@@ -27,9 +27,12 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0px 0px 16px 0px #0000000d;
   margin: auto;
+  padding: 0 16px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 `;
-
-// 1rem 16px
-// rem 루트 기준 크기?

@@ -1,9 +1,12 @@
 import ChecknPhoneNumber from 'components/ChecknPhoneNumber';
 import React from 'react';
+import Address from 'components/Address';
+
 export default function Apply() {
-  return (
-    <div>
-      <ChecknPhoneNumber />
-    </div>
+  return (<>
+       <ChecknPhoneNumber />
+      <Address />
+    </>
+
   );
 }
