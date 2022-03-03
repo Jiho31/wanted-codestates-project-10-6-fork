@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export default function Main() {
   return (
@@ -8,7 +9,9 @@ export default function Main() {
         <H5>어르신 돌보미</H5>
         <H4>케어코디</H4>
       </div>
-      <Button>신청하기</Button>
+      <Link to={'/apply'}>
+        <Button>신청하기</Button>
+      </Link>
     </Wrapper>
   );
 }
