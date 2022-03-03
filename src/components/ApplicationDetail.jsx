@@ -7,7 +7,7 @@ function ApplicationDetail() {
       <AppDetail>신청 내역</AppDetail>
       <CareType>
         <h5>돌봄 유형</h5>
-        <div>🕰시간제 돌봄</div>
+        <div>🕰 시간제 돌봄</div>
       </CareType>
       <hr />
       <CareShedule>

@@ -87,7 +87,7 @@ const AddressBottom = styled(AddressTop)`
 const DetailedAddress = styled(MainAddress)`
   width: 100%;
   margin: 0;
-  background: none;
+  background: #fff;
 
   ::placeholder {
     padding-left: 0;
