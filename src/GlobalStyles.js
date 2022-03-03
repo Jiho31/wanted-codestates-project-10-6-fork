@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+
 const GlobalStyles = createGlobalStyle` 
   ${reset}
     a{
@@ -8,6 +9,7 @@ const GlobalStyles = createGlobalStyle`
     }
     *{
         box-sizing: border-box;
+        font-family: 'Spoqa Han Sans Neo', 'sans-serif';
     }
     ::-webkit-scrollbar {
       display: none;
@@ -27,6 +29,7 @@ const GlobalStyles = createGlobalStyle`
       padding: 0;
       cursor: pointer;
     }
+
 `;
 
 export default GlobalStyles;
