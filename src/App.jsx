@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import GlobalStyles from './GlobalStyles';
 import Main from './pages/Main';
 import Apply from './pages/Apply';
+import Schedule from './components/Schedule';
 import styled from 'styled-components';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/apply" element={<Apply />} />
+          <Route path="/schedule" element={<Schedule />} />
         </Routes>
       </Wrapper>
     </Router>
@@ -22,6 +24,7 @@ function App() {
 export default App;
 
 const Wrapper = styled.div`
+  background-color: rgba(28, 21, 1, 0.2);
   width: 360px;
   height: 812px;
   display: flex;
