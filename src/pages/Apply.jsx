@@ -1,30 +1,27 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import styled from 'styled-components';
-
+import ChecknPhoneNumber from 'components/ChecknPhoneNumber';
+import CareSelectBoxes from 'components/CareSelectBoxes';
+import Address from 'components/Address';
+import PageTitle from 'components/PageTitle';
 import Header from 'components/Header';
 import BottomNav from 'components/BottomNav';
-
-import CareSelectBoxes from 'components/CareSelectBoxes';
-
-import Address from 'components/Address';
-import ChecknPhoneNumber from 'components/ChecknPhoneNumber';
+import { useSelector } from 'react-redux';
+import Complete from 'components/Complete';
 
 export default function Apply() {
+  const pageNum = useSelector((state) => state.page.pageNum);
   return (
     <>
-
       <Header />
       <Container>
-        {/* <ChecknPhoneNumber /> */}
-        {/* <Address /> */}
+        {pageNum < 4 && <PageTitle index={pageNum} />}
+        {pageNum === 0 && <CareSelectBoxes />}
+        {pageNum === 2 && <Address />}
+        {pageNum === 3 && <ChecknPhoneNumber />}
+        {pageNum === 4 && <Complete />}
       </Container>
-      <BottomNav />
-
-     <CareSelectBoxes />
-      <ChecknPhoneNumber />
-      <Address />
-
+      {pageNum < 4 && <BottomNav />}
     </>
   );
 }
