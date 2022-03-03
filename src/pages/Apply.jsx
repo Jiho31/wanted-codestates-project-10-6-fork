@@ -1,12 +1,14 @@
+import ChecknPhoneNumber from 'components/ChecknPhoneNumber';
 import React from 'react';
-import styled from 'styled-components';
 import CareSelectBoxes from 'components/CareSelectBoxes';
+import Address from 'components/Address';
 
 export default function Apply() {
   return (
-    <div>
-      apply
-      <CareSelectBoxes />
-    </div>
+    <>
+     <CareSelectBoxes />
+      <ChecknPhoneNumber />
+      <Address />
+    </>
   );
 }
