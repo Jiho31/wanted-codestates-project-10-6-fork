@@ -1,4 +1,9 @@
+import ChecknPhoneNumber from 'components/ChecknPhoneNumber';
 import React from 'react';
 export default function Apply() {
-  return <div>apply</div>;
+  return (
+    <div>
+      <ChecknPhoneNumber />
+    </div>
+  );
 }
