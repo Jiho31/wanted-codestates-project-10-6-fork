@@ -1,11 +1,22 @@
+import { NEXT_PAGE, PREV_PAGE } from 'modules/page';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 const BottomNav = () => {
+  const dispatch = useDispatch();
+  const handleNextPage = () => {
+    dispatch({ type: NEXT_PAGE });
+  };
+  const handlePrevPage = () => {
+    dispatch({ type: PREV_PAGE });
+  };
   return (
     <Nav>
-      <PrevButton>이전</PrevButton>
-      <NextButton className="unabled">다음</NextButton>
+      <PrevButton onClick={handlePrevPage}>이전</PrevButton>
+      <NextButton className="unabled" onClick={handleNextPage}>
+        다음
+      </NextButton>
     </Nav>
   );
 };

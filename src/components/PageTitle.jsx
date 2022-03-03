@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const titleInfo = [
@@ -22,12 +23,16 @@ const titleInfo = [
     title: '신청 완료',
     content: '인증하신 휴대폰 번호로\n케어코디 프로필을\n받아보실 수 있어요 ☺️',
   },
+  {
+    id: 5,
+    title: '',
+    content: '아아아아',
+  },
 ];
 
 const PageTitle = () => {
-  // props로 전달 받는 컴포넌트 인덱스 번호 (?)
-  const [index, setIndex] = useState('3');
-
+  const index = useSelector((state) => state.page.pageNum);
+  console.log(index);
   return (
     <Container>
       <div className="top">
