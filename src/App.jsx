@@ -2,17 +2,17 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import GlobalStyles from './GlobalStyles';
 import Main from './pages/Main';
-import styled from 'styled-component';
+import styled from 'styled-components';
 
 function App() {
   return (
     <Router>
       <GlobalStyles />
-      <Routes>
-        <Wrapper>
+      <Wrapper>
+        <Routes>
           <Route path="/" element={<Main />} />
-        </Wrapper>
-      </Routes>
+        </Routes>
+      </Wrapper>
     </Router>
   );
 }
@@ -25,4 +25,5 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: auto;
 `;
