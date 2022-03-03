@@ -3,59 +3,56 @@ import styled from 'styled-components';
 import { ReactComponent as LeftArrow } from 'assets/leftArrow.svg';
 import { ReactComponent as RightArrow } from 'assets/rightArrow.svg';
 import { ReactComponent as Fill } from 'assets/Fill.svg';
-
+// () => {
+//   setMonth(month + 1);
+//   console.log((month + 1) % 13);
+//   if (!((month + 1) % 13) || ((month + 1) % 13) + 1 == 1) {
+//     setTargetYear(new Date(year, month + 2).getFullYear());
+//   }
+//   // console.log(new Date(year, month + 1,0).getFullYear());
+//   // setTargetYear(new Date(year, month + 2).getFullYear());
+// }
 export default function Calendar(props) {
-  const [targetYear, setTargetYear] = useState(new Date().getFullYear());
-  const [targetMonth, setTargetMonth] = useState(new Date().getMonth());
-
-  const {} = props;
+  const { month, setMonth, year, setTargetYear } = props;
   const days = ['일', '월', '화', '수', '목', '금', '토'];
-
-  const today = new Date(targetYear, targetMonth + 1);
-  const year = today.getFullYear();
-  const month = today.getMonth();
-  console.log(targetYear, targetMonth);
-  console.log(year, month);
+  //
 
   const preLastInfo = new Date(year, month - 1, 0);
   const thisLastInfo = new Date(year, month, 0);
-  console.log(preLastInfo);
-  console.log(thisLastInfo);
 
   const preLastDate = preLastInfo.getDate();
   const preLastDay = preLastInfo.getDay();
   const thisLastDate = thisLastInfo.getDate();
   const thisLastDay = thisLastInfo.getDay();
-  console.log(preLastDate);
-  console.log(preLastDay, days[preLastDay]);
-  console.log(thisLastDate);
-  console.log(thisLastDay, days[thisLastDay]);
 
   const preDates = [];
   const nextDates = [];
-
   if (preLastDay < 6) {
     for (let i = preLastDate; i > preLastDate - preLastDay - 1; i--) {
       preDates.unshift('');
     }
   }
-
   for (let i = 1; i < 7 - thisLastDay; i++) {
     nextDates.push('');
   }
-
   const thisDates = [...Array(thisLastDate + 1).keys()].slice(1);
 
   const thisMonth = [...preDates, ...thisDates, ...nextDates];
+
+  const monthHandler = (n) => {
+    const newDate = new Date(year, month + n, 0);
+    setMonth(newDate.getMonth() + 1);
+    setTargetYear(newDate.getFullYear());
+  };
   return (
     <ContainerSt>
       <Title>
         <div className="arrow">
-          <LeftArrow />
+          <LeftArrow onClick={() => monthHandler(-1)} />
         </div>
         <div className="thisMonth">{`${year}년 ${month}월`}</div>
         <div className="arrow">
-          <RightArrow />
+          <RightArrow onClick={() => monthHandler(1)} />
         </div>
       </Title>
       <DatesWrapper>
