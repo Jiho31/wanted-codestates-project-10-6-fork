@@ -21,6 +21,10 @@ const GlobalStyles = createGlobalStyle`
     input {
       border: none;
     }
+    input:focus {
+      outline: none;
+    }
+
     button {
       border: none;
       background: none;
