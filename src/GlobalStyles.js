@@ -10,6 +10,8 @@ const GlobalStyles = createGlobalStyle`
     *{
         box-sizing: border-box;
         font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+        color:#5B5555;
+
     }
     ::-webkit-scrollbar {
       display: none;
@@ -23,6 +25,10 @@ const GlobalStyles = createGlobalStyle`
     input {
       border: none;
     }
+    input:focus {
+      outline: none;
+    }
+
     button {
       border: none;
       background: none;
