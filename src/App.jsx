@@ -27,6 +27,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: auto;
   padding: 0 16px;
   position: fixed;
   top: 50%;
