@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import GlobalStyles from './GlobalStyles';
 import Main from './pages/Main';
+import Apply from './pages/Apply';
 import styled from 'styled-components';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Wrapper>
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/apply" element={<Apply />} />
         </Routes>
       </Wrapper>
     </Router>
@@ -27,3 +29,6 @@ const Wrapper = styled.div`
   align-items: center;
   margin: auto;
 `;
+
+// 1rem 16px
+// rem 루트 기준 크기?
