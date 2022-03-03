@@ -16,6 +16,9 @@ const Nav = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 `;
 const PrevButton = styled.button`
   width: 58px;

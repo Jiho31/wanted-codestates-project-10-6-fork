@@ -17,6 +17,9 @@ const HeaderComponent = styled.header`
   justify-content: flex-start;
   align-items: center;
   padding: 0 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
 
   button {
     color: #5b5555;
