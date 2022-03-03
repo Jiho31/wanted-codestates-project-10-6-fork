@@ -7,7 +7,7 @@ function ApplicationDetail() {
       <AppDetail>신청 내역</AppDetail>
       <CareType>
         <h5>돌봄 유형</h5>
-        <div>🕰시간제 돌봄</div>
+        <div>🕰 시간제 돌봄</div>
       </CareType>
       <hr />
       <CareShedule>
@@ -115,7 +115,6 @@ const DetailAddress = styled.div`
     position: relative;
     width: 35px;
     line-height: 20px;
-    /* border: 1px solid red; */
     border-radius: 8px;
     text-align: center;
     top: -4px;

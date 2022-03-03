@@ -11,7 +11,6 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
         font-family: 'Spoqa Han Sans Neo', 'sans-serif';
         color:#5B5555;
-
     }
     ::-webkit-scrollbar {
       display: none;
