@@ -10,7 +10,7 @@ function ChecknPhoneNumber() {
         <br />
         케어코디 프로필을
         <br />
-        받아보실 수 있어요😃
+        받아보실 수 있어요 😃
         <br />
       </Guide>
       <DetailContainer>
