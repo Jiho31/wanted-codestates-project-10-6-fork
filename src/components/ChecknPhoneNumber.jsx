@@ -4,23 +4,17 @@ import ApplicationDetail from './ApplicationDetail';
 
 function ChecknPhoneNumber() {
   return (
-    <Container>
-      <Guide>
-        인증하신 휴대폰 번호로
-        <br />
-        케어코디 프로필을
-        <br />
-        받아보실 수 있어요 😃
-        <br />
-      </Guide>
-      <DetailContainer>
-        <ApplicationDetail />
-      </DetailContainer>
-      <PhoneNumber
-        type="text"
-        placeholder="전화번호를 입력해주세요 (숫자만 입력해주세요.)"
-      />
-    </Container>
+    <>
+      <Container>
+        <DetailContainer>
+          <ApplicationDetail />
+        </DetailContainer>
+        <PhoneNumber
+          type="text"
+          placeholder="전화번호를 입력해주세요 (숫자만 입력해주세요.)"
+        />
+      </Container>
+    </>
   );
 }
 
