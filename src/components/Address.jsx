@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import SearchIcon from 'Assets/searchIcon.svg';
+import SearchIcon from 'assets/searchIcon.svg';
 import SearchAddress from './SearchAddress';
 
 const Address = (props) => {

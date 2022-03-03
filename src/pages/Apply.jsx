@@ -3,10 +3,10 @@ import React from 'react';
 import Address from 'components/Address';
 
 export default function Apply() {
-  return (<>
-       <ChecknPhoneNumber />
+  return (
+    <>
+      <ChecknPhoneNumber />
       <Address />
     </>
-
   );
 }

@@ -8,6 +8,7 @@ const GlobalStyles = createGlobalStyle`
     }
     *{
         box-sizing: border-box;
+        color:#5B5555;
     }
     ::-webkit-scrollbar {
       display: none;

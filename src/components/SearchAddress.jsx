@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SearchIcon from 'Assets/searchIcon.svg';
+import SearchIcon from 'assets/searchIcon.svg';
 import AddressList from './AddressList';
 
 const SearchAddress = ({ isOpen, openHandler }) => {
