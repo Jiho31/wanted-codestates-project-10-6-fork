@@ -24,7 +24,6 @@ function App() {
 export default App;
 
 const Wrapper = styled.div`
-  background-color: rgba(28, 21, 1, 0.2);
   width: 360px;
   height: 812px;
   display: flex;
