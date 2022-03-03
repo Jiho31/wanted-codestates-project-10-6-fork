@@ -79,7 +79,7 @@ export default function TimeListModal({ title, showListHandler }) {
 const BackgroundSt = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   top: -1px;
-  left: 0px;
+  left: -16px;
   width: 360px;
   height: 811px;
   position: absolute;

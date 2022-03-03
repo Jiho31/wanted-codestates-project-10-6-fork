@@ -18,7 +18,7 @@ export default function DateSelector() {
 const ContainerSt = styled.div`
   position: absolute;
   top: 0px;
-  left: 0px;
+  left: -16px;
   background-color: lightgray;
   width: 360px;
   height: 1000px;

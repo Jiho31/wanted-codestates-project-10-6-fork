@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import DateSelector from './DateSelector';
 import TimeListModal from './TimeListModal';
+import { ReactComponent as Fill } from 'assets/Fill.svg';
 
 export default function Schedule() {
   const [showStartTimeList, setShowStartTimeList] = useState(false);
@@ -22,14 +23,18 @@ export default function Schedule() {
           <span>시작일</span>
           <SelectDateSt>
             <div>날짜 선택</div>
-            <div>달력아이콘</div>
+            <div>
+              <Fill />
+            </div>
           </SelectDateSt>
         </MiniWrapperSt>
         <MiniWrapperSt>
           <span>종료일</span>
           <SelectDateSt>
             <div>날짜 선택</div>
-            <div>달력아이콘</div>
+            <div>
+              <Fill />
+            </div>
           </SelectDateSt>
         </MiniWrapperSt>
       </SelectDateWrapperSt>
@@ -67,7 +72,7 @@ export default function Schedule() {
 const ContainerSt = styled.section`
   width: 100%;
   height: 458px;
-  padding: 32px 16px 64px;
+  padding: 32px 0 64px;
   position: relative;
 `;
 const SelectDateWrapperSt = styled.div`
@@ -87,9 +92,9 @@ const SelectDateSt = styled.div`
   line-height: 20px;
   font-weight: 700;
   padding: 0 16px;
-  img {
-    width: 30px;
-    height: 30px;
+  div {
+    display: flex;
+    align-items: center;
   }
 `;
 const MiniWrapperSt = styled.div`
