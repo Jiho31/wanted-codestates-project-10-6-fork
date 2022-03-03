@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export default function SelectBox({ children, icon }) {
   return (
     <Box>
-      <Icon>{icon}</Icon>
+      <Icon src={icon} />
       <span>{children}</span>
     </Box>
   );
@@ -32,7 +32,7 @@ const Box = styled.div`
   font-size: 14px;
   font-weight: 700;
 `;
-const Icon = styled.div`
+const Icon = styled.img`
   font-family: Spoqa Han Sans Neo;
   font-size: 48px;
   font-style: normal;
@@ -40,4 +40,5 @@ const Icon = styled.div`
   line-height: 68px;
   letter-spacing: 0em;
   text-align: center;
+  margin-bottom: 10px;
 `;
