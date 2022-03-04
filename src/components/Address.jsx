@@ -66,7 +66,6 @@ const Address = () => {
 const AddressBox = styled.div`
   width: 100%;
   height: auto;
-  padding-top: 32px;
 `;
 
 const AddressTop = styled.div`
