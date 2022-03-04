@@ -1,6 +1,6 @@
 import { setEndDate, setStartDate } from 'modules/careDate';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 
 export default function Dates({
@@ -9,6 +9,9 @@ export default function Dates({
   startDay,
   endDay,
   isIncluded,
+  year,
+  month,
+  date,
 }) {
   const dispatch = useDispatch();
   const execGene = (clickDay) => {
@@ -16,14 +19,20 @@ export default function Dates({
     if (!value) setClickday.next(clickDay);
   };
 
+  const test = useSelector((state) => state.careDate);
+  console.log(startDay, endDay);
+  // console.log(startDay, endDay);
   const setDate = () => {
-    // 선택상태저장
-    const date = '222';
-    dispatch(setStartDate(date));
-    dispatch(setEndDate(date));
+    // if (startDay) {
+    //   dispatch(setStartDate(year, month, date));
+    // }
+    // if (endDay) {
+    //   dispatch(setEndDate(year, month, date));
+    // }
   };
+
   return (
-    <DIV>
+    <DIV onClick={setDate}>
       <Date
         startDay={startDay}
         endDay={endDay}

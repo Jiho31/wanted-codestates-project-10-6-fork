@@ -8,7 +8,7 @@ export default function DateSelector({ showCalendarHandler }) {
   // const [month, setMonth] = useState(today.getMonth());
   return (
     <ContainerSt>
-      <TopSt>돌봄 날짜 선택</TopSt>
+      <TopSt onClick={showCalendarHandler}>돌봄 날짜 선택</TopSt>
       <CalendarWrapper>
         <Calendar
           month={targetMonth}
