@@ -1,100 +1,73 @@
+<br />
 
-## 모듈
-- React `$ npx create-react-app template`
-- React-router-dom `$ npm i react-router-dom`
-- styled-components `$ npm install --save styled-components`
-- styled-reset `$ npm i styled-reset`
-: reset css 설정
-- redux `$npm i redux`
-- react-redux `$ npm install react-redux`
-: react와 redux를 연결시켜준다. provider 사용
-- redux-devtools-extension `$ npm i redux-devtools-extension` 
-: 크롬개발자도구로 리덕스 상태관리 기록을 확인 할수 있게 해준다.
-<div align="center"><img width="400px" src="https://images.velog.io/images/hinyc/post/de0c319d-21bc-48e1-a041-c5efb5499ce9/image.png"/></div>
-  
-<div align="center"><img width="250px" src="https://images.velog.io/images/hinyc/post/f353854e-4903-4827-ba20-5cb7c61007cb/image.png"/></div>
-  
+## wanted-codestates-project-10-6 🌈
 
-## 설정 추가
-### reset css 설정
-#### `GlobalStyles.js` component 생성
-```jsx
-import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset';
-const GlobalStyles = createGlobalStyle` 
-  ${reset}
-    a{
-        text-decoration: none;
-        color: inherit;
-    }
-    *{
-        box-sizing: border-box;
-    }
-    ::-webkit-scrollbar {
-      display: none;
-    }
-    input, textarea { 
-      -moz-user-select: auto;
-      -webkit-user-select: auto;
-      -ms-user-select: auto;
-      user-select: auto;
-    }
-    input {
-      border: none;
-    }
-    button {
-      border: none;
-      background: none;
-      padding: 0;
-      cursor: pointer;
-    }
-`;
+### 📎 [과제링크]()
 
-export default GlobalStyles;
+<div align="center">
+<img width="300px" src=""/>
+</div>
+<br />
 
-```
-
-**App component에 GlobalStyles Comoponet 추가**
-<div align="center"><img width="600px" src="https://images.velog.io/images/hinyc/post/decfa986-f57c-4496-b4ea-7ad967ed7b33/image.png"/></div>
+### About 🪄
 
 
-### prettirerc 설정
 
-<img width="150px" src="https://images.velog.io/images/hinyc/post/44f7e756-d3f1-472a-b1df-fbf9d26d5fc9/image.png"/>
 
-```js
-{
-  "singleQuote": true,
-  "semi": true,
-  "useTabs": false,
-  "tabWidth": 2,
-  "trailingComma": "all",
-  "printWidth": 200
-}
-```
+<br />
 
-## redux store 생성
-```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { createStore } from 'redux';
-import rootReducer from './modules';
-import { Provider } from 'react-redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-//!Provider를 이용해 <App/> 을 감싸면 모든 컴포넌트에서 store에 접근 가능
+### 프로젝트 실행 방법 ⚙️
 
-const store = createStore(rootReducer, composeWithDevTools());
-ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root'),
-);
 
-reportWebVitals();
-```
+<br />
+
+### 팀 구성 👨‍👨‍👧‍👧
+
+| 이름                                   | 직책 | 역할                                           |
+| ------------------------------------ | ---- | ------------------------------------------------ |
+|🏄🏻‍♂️ [홍인열](https://github.com/hinyc)   | 팀장 ||
+|🐸 [김주영](https://github.com/juo1221) | 팀원 |                        |
+|🐮 [복지호](https://github.com/Jiho31)  | 팀원 |        |
+|🍔 [우혁주](https://github.com/Space-Belt) | 팀원 |                          |
+|🍕 [전용태](https://github.com/yong313)    | 팀원 |                   |
+### 기술 스텍 🛠
+
+<img src="https://img.shields.io/badge/Vue-35485e?style=flat-round&logo=vue.js&logoColor=41b783"/></a> &nbsp;
+<img src="https://img.shields.io/badge/HTML5-35485e?style=flat-round&logo=HTML5&logoColor=ea6129"/></a>&nbsp;
+<img src="https://img.shields.io/badge/CSS-35485e?style=flat-round&logo=CSS3&logoColor=28a4d8"/></a> &nbsp;
+<img src="https://img.shields.io/badge/Vue--Chart.js-35485e?style=flat-round&logo=Axios&logoColor=CA4245"/></a> &nbsp;
+
+## 구현한 기능 목록
+<details>
+  <summary>홍인열</summary>
+  <ul>
+   <li> </li>
+  </ul>
+</details>
+<details>
+  <summary>김주영</summary>
+  <ul>
+   <li> </li>
+  </ul>
+</details>
+<details>
+  <summary>복지호</summary>
+  <ul>
+    <li> </li>
+  </ul>
+</details>
+<details>
+  <summary>우혁주</summary>
+    <ul>
+      <li> </li>
+    </ul>
+</details>
+<details>
+  <summary>전용태</summary>
+  <ul>
+    <li>  </li>
+  </ul>
+</details>
+
+
+<br />
