@@ -8,6 +8,7 @@ import Header from 'components/Header';
 import BottomNav from 'components/BottomNav';
 import { useSelector } from 'react-redux';
 import Complete from 'components/Complete';
+import Schedule from 'components/Schedule';
 
 export default function Apply() {
   const pageNum = useSelector((state) => state.page.pageNum);
@@ -16,9 +17,10 @@ export default function Apply() {
       <Header />
       <Container>
         {pageNum < 4 && <PageTitle index={pageNum} />}
-        {pageNum === 0 && <ChecknPhoneNumber />}
-        {pageNum === 1 && <CareSelectBoxes />}
+        {pageNum === 0 && <CareSelectBoxes />}
+        {pageNum === 1 && <Schedule />}
         {pageNum === 2 && <Address />}
+        {pageNum === 3 && <ChecknPhoneNumber />}
         {pageNum === 4 && <Complete />}
       </Container>
       {pageNum < 4 && <BottomNav />}

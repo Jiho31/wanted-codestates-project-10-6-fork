@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import DateSelector from './DateSelector';
 import TimeListModal from './TimeListModal';
+import { ReactComponent as Fill } from 'assets/Fill.svg';
+import { ReactComponent as UnderArrow } from 'assets/UnderArrow.svg';
+import { useSelector } from 'react-redux';
 
 export default function Schedule() {
   const [showStartTimeList, setShowStartTimeList] = useState(false);
@@ -15,6 +18,8 @@ export default function Schedule() {
     setShowCareTimeList(!showCareTimeList);
   };
 
+  const careTime = useSelector((state) => state.careTime);
+
   return (
     <ContainerSt>
       <SelectDateWrapperSt>
@@ -22,29 +27,37 @@ export default function Schedule() {
           <span>시작일</span>
           <SelectDateSt>
             <div>날짜 선택</div>
-            <div>달력아이콘</div>
+            <div>
+              <Fill />
+            </div>
           </SelectDateSt>
         </MiniWrapperSt>
         <MiniWrapperSt>
           <span>종료일</span>
           <SelectDateSt>
             <div>날짜 선택</div>
-            <div>달력아이콘</div>
+            <div>
+              <Fill />
+            </div>
           </SelectDateSt>
         </MiniWrapperSt>
       </SelectDateWrapperSt>
       <MiniWrapperSt onClick={showStartTimeListHandler}>
         <span>돌봄 시작 시간</span>
         <SelectTimeSt>
-          <div>선택</div>
-          <div>화살표</div>
+          <div>{careTime.startTime ? careTime.startTime : '선택'}</div>
+          <div className="arrow">
+            <UnderArrow />
+          </div>
         </SelectTimeSt>
       </MiniWrapperSt>
       <MiniWrapperSt onClick={showCareTimeListHandler}>
         <span>하루 돌봄 시간</span>
         <SelectTimeSt>
-          <div>선택</div>
-          <div>화살표</div>
+          <div>{careTime.careTime ? careTime.careTime : '선택'}</div>
+          <div className="arrow">
+            <UnderArrow />
+          </div>
         </SelectTimeSt>
       </MiniWrapperSt>
       {showStartTimeList && (
@@ -59,7 +72,7 @@ export default function Schedule() {
           showListHandler={showCareTimeListHandler}
         />
       )}
-      <DateSelector />
+      {/* <DateSelector /> */}
     </ContainerSt>
   );
 }
@@ -67,7 +80,7 @@ export default function Schedule() {
 const ContainerSt = styled.section`
   width: 100%;
   height: 458px;
-  padding: 32px 16px 64px;
+  padding: 32px 0 64px;
   position: relative;
 `;
 const SelectDateWrapperSt = styled.div`
@@ -87,9 +100,9 @@ const SelectDateSt = styled.div`
   line-height: 20px;
   font-weight: 700;
   padding: 0 16px;
-  img {
-    width: 30px;
-    height: 30px;
+  div {
+    display: flex;
+    align-items: center;
   }
 `;
 const MiniWrapperSt = styled.div`
@@ -112,6 +125,10 @@ const SelectTimeSt = styled.div`
   border: none;
   background-color: #f6f6f6;
   padding: 14px 16px;
-  option {
+  font-size: 14px;
+  font-weight: 700;
+  .arrow {
+    width: 16px;
+    height: 10px;
   }
 `;

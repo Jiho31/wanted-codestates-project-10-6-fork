@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import page from './page';
 import careType from './careType';
+import careTime from './careTime';
 import address from './address';
 import activeButton from './activeButton';
 
-
-const rootReducer = combineReducers({ careType, page, activeButton, address });
+const rootReducer = combineReducers({ careType, page, activeButton, address,careTime });
 export default rootReducer;
 
 //store 생성은 src/index.js에서

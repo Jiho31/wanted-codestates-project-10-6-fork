@@ -1,7 +1,10 @@
+import { setCareTime, setStartTime } from 'modules/careTime';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 export default function TimeListModal({ title, showListHandler }) {
+  const dispatch = useDispatch();
   const startTimeList = [
     '오전 8시',
     '오전 9시',
@@ -28,20 +31,14 @@ export default function TimeListModal({ title, showListHandler }) {
     '11시간',
     '12시간',
   ];
-  let timeList = [];
-  const selectHandler = (e) => {
-    showListHandler();
 
-    if (title === 'start') {
-      // 시작 시간 상태 셋 함수 실행
-      timeList = startTimeList;
-      console.log(e.target.innerText);
-    }
-    if (title === 'care') {
-      // 돌봄 시간 상태 셋 함수 실행
-      timeList = careTimeList;
-      console.log(e.target.innerText);
-    }
+  const selectCareTimeHandler = (e) => {
+    dispatch(setCareTime(e.target.innerText));
+    showListHandler();
+  };
+  const selectStartTimeHandler = (e) => {
+    dispatch(setStartTime(e.target.innerText));
+    showListHandler();
   };
 
   const subTitle = () => {
@@ -54,7 +51,6 @@ export default function TimeListModal({ title, showListHandler }) {
         return;
     }
   };
-
   return (
     <>
       <BackgroundSt>
@@ -65,11 +61,17 @@ export default function TimeListModal({ title, showListHandler }) {
               x
             </div>
           </MiniWrapper>
-          {startTimeList.map((el, idx) => (
-            <TimeListSt key={idx} onClick={selectHandler}>
-              {el}
-            </TimeListSt>
-          ))}
+          {title === 'start'
+            ? startTimeList.map((el, idx) => (
+                <TimeListSt key={idx} onClick={selectStartTimeHandler}>
+                  {el}
+                </TimeListSt>
+              ))
+            : careTimeList.map((el, idx) => (
+                <TimeListSt key={idx} onClick={selectCareTimeHandler}>
+                  {el}
+                </TimeListSt>
+              ))}
         </ContainerSt>
       </BackgroundSt>
     </>
@@ -79,7 +81,7 @@ export default function TimeListModal({ title, showListHandler }) {
 const BackgroundSt = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   top: -1px;
-  left: 0px;
+  left: -16px;
   width: 360px;
   height: 811px;
   position: absolute;
@@ -92,6 +94,7 @@ const ContainerSt = styled.div`
   left: 0px;
   width: 360px;
   height: 625px;
+  z-index: 9;
 `;
 const MiniWrapper = styled.div`
   display: flex;
