@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Calendar from './Calendar';
-export default function DateSelector() {
+export default function DateSelector({ showCalendarHandler }) {
   const [targetYear, setTargetYear] = useState(new Date().getFullYear());
   const [targetMonth, setTargetMonth] = useState(new Date().getMonth() + 1);
   // const today = new Date(targetYear, targetMonth + 1);
@@ -25,7 +25,7 @@ export default function DateSelector() {
           setTargetYear={setTargetYear}
         /> */}
       </CalendarWrapper>
-      <ButtonSt>선택 완료</ButtonSt>
+      <ButtonSt onClick={showCalendarHandler}>선택 완료</ButtonSt>
     </ContainerSt>
   );
 }
