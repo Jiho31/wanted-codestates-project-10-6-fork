@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { debounce } from 'lodash';
 import SearchIcon from 'assets/searchIcon.svg';
 import AddressList from './AddressList';
 
@@ -9,7 +10,7 @@ const SearchAddress = ({ openHandler, setIsOpen }) => {
   const [datas, setDatas] = useState();
   const API_KEY = 'devU01TX0FVVEgyMDIyMDEyODIzMjIyNjExMjE5NjE=';
   // 자동완성
-  const autoClick = () => {
+  const autoSearch = () => {
     const fetchData = async (url) => {
       const { data } = await axios.get(url);
       setDatas(data.results.juso);
@@ -17,8 +18,12 @@ const SearchAddress = ({ openHandler, setIsOpen }) => {
     fetchData(
       `https://www.juso.go.kr/addrlink/addrLinkApi.do?currentPage=1&countPerPage=10&keyword=${addAddress.current.value}&confmKey=${API_KEY}&resultType=json`,
     );
-    console.log(datas);
+    // 데이터 확인
+    // console.log(datas);
   };
+  // 디바운스 - api 요청 딜레이
+  const debounceOnChange = debounce(autoSearch, 350);
+
   // 주소 컴포넌트 필터링
   const onOff = () => {
     if (!datas) return true;
@@ -33,14 +38,14 @@ const SearchAddress = ({ openHandler, setIsOpen }) => {
           <LeftBox>
             <p>주소 검색</p>
           </LeftBox>
-          <XBTN onClick={openHandler}>X</XBTN>
+          <XBTN onClick={openHandler}>&#10005;</XBTN>
         </TitleBox>
         <TopBox>
           <SearchBox>
             <MainAddress
               placeholder="주소 또는 건물명으로 검색"
               ref={addAddress}
-              onChange={autoClick}
+              onChange={debounceOnChange}
             />
           </SearchBox>
           <TopAddressListBox>
@@ -107,6 +112,7 @@ const XBTN = styled.div`
   height: 28px;
   text-align: right;
   line-height: 28px;
+  font-weight: bold;
   position: absolute;
   right: 16px;
   cursor: pointer;
