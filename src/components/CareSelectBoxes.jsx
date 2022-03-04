@@ -18,12 +18,12 @@ export default function CareSelectBoxes() {
     <div>
       <BoxWrapper>
         <div onClick={onSetFull}>
-          <SelectBox icon={Time} isActive={isActive === 'full'}>
+          <SelectBox icon={Sun} isActive={isActive === 'full'}>
             24시간 상주
           </SelectBox>
         </div>
         <div onClick={onSetPart}>
-          <SelectBox icon={Sun} isActive={isActive === 'part'}>
+          <SelectBox icon={Time} isActive={isActive === 'part'}>
             시간제 돌봄
           </SelectBox>
         </div>

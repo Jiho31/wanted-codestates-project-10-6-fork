@@ -47,6 +47,9 @@ const Box = styled.div`
   &.active {
     background-color: #ff8450;
   }
+  &.active > span {
+    color: #fff;
+  }
 `;
 const Icon = styled.img`
   font-family: Spoqa Han Sans Neo;

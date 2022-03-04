@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 const BottomNav = () => {
   const dispatch = useDispatch();
+
   const handleNextPage = () => {
     dispatch({ type: NEXT_PAGE });
     dispatch(clickNext());
@@ -20,11 +21,7 @@ const BottomNav = () => {
   return (
     <Nav>
       <PrevButton onClick={handlePrevPage}>이전</PrevButton>
-      <NextButton
-        className="unabled"
-        onClick={handleNextPage}
-        disabled={!checkN}
-      >
+      <NextButton onClick={handleNextPage} disabled={!checkN}>
         다음
       </NextButton>
     </Nav>
@@ -59,10 +56,13 @@ const NextButton = styled.button`
   font-size: 14px;
   font-weight: bold;
 
-  &.unabled {
-    background-color: #e2e2e2;
-    color: #b6b3b3;
-  }
+  ${(props) =>
+    props.disabled
+      ? `
+  background-color: #e2e2e2;
+  color: #b6b3b3;
+  `
+      : ``}
 `;
 
 export default BottomNav;
