@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import page from './page';
-import careType from './careType';
 import careTime from './careTime';
 import address from './address';
 import activeButton from './activeButton';
 import careDate from './careDate';
+
 
 const rootReducer = combineReducers({
   careType,
@@ -14,6 +14,7 @@ const rootReducer = combineReducers({
   careTime,
   careDate,
 });
+
 export default rootReducer;
 
 //store 생성은 src/index.js에서
@@ -23,3 +24,5 @@ export default rootReducer;
 //시작 시간 "startTime"
 //돌봄 시간 "careTime"
 //주소 "address"
+// 버튼 활성화 "activeButton"
+// -> careType 은 activeButton 내부에서 처리

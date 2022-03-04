@@ -47,10 +47,10 @@ const PageTitle = () => {
   );
 };
 const Container = styled.section`
-  // width: 328px;
   width: 100%;
   height: auto;
-  padding: 0 16px;
+  padding-top: 24px;
+  padding-bottom: 32px;
   font-weight: 700;
   .top {
     width: 100%;
