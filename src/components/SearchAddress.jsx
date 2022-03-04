@@ -8,15 +8,14 @@ import AddressList from './AddressList';
 const SearchAddress = ({ openHandler, setIsOpen }) => {
   const addAddress = useRef(null);
   const [datas, setDatas] = useState();
-  const API_KEY = 'devU01TX0FVVEgyMDIyMDEyODIzMjIyNjExMjE5NjE=';
-  // 자동완성
+
   const autoSearch = () => {
     const fetchData = async (url) => {
       const { data } = await axios.get(url);
       setDatas(data.results.juso);
     };
     fetchData(
-      `https://www.juso.go.kr/addrlink/addrLinkApi.do?currentPage=1&countPerPage=10&keyword=${addAddress.current.value}&confmKey=${API_KEY}&resultType=json`,
+      `https://www.juso.go.kr/addrlink/addrLinkApi.do?currentPage=1&countPerPage=10&keyword=${addAddress.current.value}&confmKey=${process.env.REACT_APP_API_KEY}&resultType=json`,
     );
     // 데이터 확인
     // console.log(datas);
