@@ -8,15 +8,17 @@ import styled from 'styled-components';
 const BottomNav = () => {
   const dispatch = useDispatch();
 
+  const currentPage = useSelector((state) => state.page.pageNum);
+  const checkN = useSelector((state) => state.activeButton.activateBtn);
+
   const handleNextPage = () => {
     dispatch({ type: NEXT_PAGE });
-    dispatch(clickNext());
+    dispatch(clickNext(currentPage));
   };
   const handlePrevPage = () => {
     dispatch({ type: PREV_PAGE });
-    dispatch(clickPrev());
+    dispatch(clickPrev(currentPage));
   };
-  const checkN = useSelector((state) => state.activeButton.activateBtn);
 
   return (
     <Nav>

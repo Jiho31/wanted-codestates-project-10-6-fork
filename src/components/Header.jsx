@@ -1,10 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from '../../node_modules/react-router/index';
+
+//
+import { useDispatch } from 'react-redux';
+import { activeInit } from 'modules/activeButton';
+import { addressInit } from 'modules/address';
+import { dateInit } from 'modules/careDate';
+import { timeInit } from 'modules/careTime';
+import { PAGE_INIT } from 'modules/page';
+
+//
 
 const Header = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const endHandler = () => {
+    dispatch(activeInit());
+    dispatch(addressInit());
+    dispatch(dateInit());
+    dispatch(timeInit());
+    dispatch({ type: PAGE_INIT });
+    navigate('/');
+  };
+
   return (
     <HeaderComponent>
-      <button>&#xE000;</button>
+      <button onClick={endHandler}>&#xE000;</button>
       <p>돌보미 신청하기</p>
     </HeaderComponent>
   );
