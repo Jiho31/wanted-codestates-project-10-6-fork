@@ -1,26 +1,41 @@
+import { phoneNumberChange } from 'modules/activeButton';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import ApplicationDetail from './ApplicationDetail';
 
 function ChecknPhoneNumber() {
+  const dispatch = useDispatch();
+
+  const changeHandler = (e) => {
+    const pnumber = e.target.value;
+    if (e.type === 'keyup' && isNaN(Number(e.key))) {
+      return;
+    } else if (e.type === 'change' && isNaN(Number(pnumber))) {
+      return;
+    }
+    dispatch(phoneNumberChange(pnumber));
+  };
+
+  const inputNumber = useSelector((state) => state.activeButton.number);
+
   return (
-    <Container>
-      <Guide>
-        인증하신 휴대폰 번호로
-        <br />
-        케어코디 프로필을
-        <br />
-        받아보실 수 있어요😃
-        <br />
-      </Guide>
-      <DetailContainer>
-        <ApplicationDetail />
-      </DetailContainer>
-      <PhoneNumber
-        type="text"
-        placeholder="전화번호를 입력해주세요 (숫자만 입력해주세요.)"
-      />
-    </Container>
+    <>
+      <Container>
+        <DetailContainer>
+          <ApplicationDetail />
+        </DetailContainer>
+        <PhoneNumber
+          type="text"
+          placeholder="전화번호를 입력해주세요 (11자리의 숫자)"
+          onKeyUp={changeHandler}
+          onChange={changeHandler}
+          maxLength="11"
+          value={inputNumber}
+        />
+      </Container>
+    </>
   );
 }
 
@@ -32,14 +47,6 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const Guide = styled.p`
-  margin-top: 1rem;
-  line-height: 36px;
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 30px;
-`;
-
 const DetailContainer = styled.div`
   width: 320px;
   height: 452px;
@@ -47,7 +54,6 @@ const DetailContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid rgba(0, 0, 5, 0.5); */
   box-shadow: 0px 0px 16px 0px #0000000d;
   margin-bottom: 32px;
   border-radius: 8px;
