@@ -34,6 +34,5 @@ export default function CareSelectBoxes() {
 const BoxWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 32px;
   // margin: 0 16px;
 `;
