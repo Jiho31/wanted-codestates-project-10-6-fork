@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import DateSelector from './DateSelector';
 import TimeListModal from './TimeListModal';
 import { ReactComponent as Fill } from 'assets/Fill.svg';
-import UnderArrow from '../assets/UnderArrow.svg';
+import iconArrow from '../assets/underArrow.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import { setShowCalendar } from 'modules/careDate';
 
@@ -62,7 +62,7 @@ export default function Schedule() {
         <SelectTimeSt>
           <div>{careTime.startTime ? careTime.startTime : '선택'}</div>
           <div className="arrow">
-            <img src={UnderArrow} alt="" />
+            <img src={iconArrow} alt="" />
           </div>
         </SelectTimeSt>
       </MiniWrapperSt>
@@ -71,7 +71,7 @@ export default function Schedule() {
         <SelectTimeSt>
           <div>{careTime.careTime ? careTime.careTime : '선택'}</div>
           <div className="arrow">
-            <img src={UnderArrow} alt="" />
+            <img src={iconArrow} alt="" />
           </div>
         </SelectTimeSt>
       </MiniWrapperSt>
