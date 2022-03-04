@@ -40,7 +40,7 @@ const Box = styled.div`
   flex: none;
   order: 1;
   flex-grow: 1;
-  margin: 0px 8px;
+  // margin: 0px 8px;
   font-size: 14px;
   font-weight: 700;
 

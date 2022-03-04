@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setPart, setFull } from 'modules/activeButton';
 
 export default function CareSelectBoxes() {
-  const isActive = useSelector((state) => state.activeButton.isActive);
+  const isActive = useSelector((state) => state.activeButton.careType);
 
   const dispatch = useDispatch();
 
@@ -33,4 +33,7 @@ export default function CareSelectBoxes() {
 }
 const BoxWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+  // margin: 0 16px;
 `;
