@@ -1,10 +1,10 @@
 import React, { Children, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import SearchIcon from 'assets/searchIcon.svg';
 import SearchAddress from './SearchAddress';
 import { setUserAddress } from 'modules/address';
 import { clickNext, clickPrev } from 'modules/activeButton';
+import { FaSearch } from 'react-icons/fa';
 
 const Address = () => {
   const dispatch = useDispatch();
@@ -44,7 +44,10 @@ const Address = () => {
         <AddressTop>
           <MainAddress widthMargin={choiceAddress} onClick={openHandler}>
             {!choiceAddress ? (
-              <div>주소 또는 건물명으로 검색</div>
+              <div>
+                <FaSearch className="search" />
+                &nbsp; 주소 또는 건물명으로 검색
+              </div>
             ) : (
               <div className="choicaAddressFontColor">
                 {choiceAddress.split(' ').slice(0, 3).join(' ')}
@@ -98,20 +101,18 @@ const MainAddress = styled.div`
   border: 1px solid #eeeeee;
   border-radius: 4px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   font-size: 14px;
   cursor: text;
-  background-image: url(${SearchIcon});
-  background-repeat: no-repeat;
-  background-position: 16px center;
 
   div {
     width: 90%;
-    padding-top: 2px;
-    margin-left: 30px;
     white-space: nowrap;
     color: #b6b3b3;
+  }
+  .search {
+    fill: #b6b3b3;
   }
 
   .choicaAddressFontColor {

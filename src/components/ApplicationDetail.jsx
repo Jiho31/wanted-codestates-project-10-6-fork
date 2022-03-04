@@ -1,8 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import sun from 'assets/sun.svg';
-import time from 'assets/time.svg';
 
 function ApplicationDetail() {
   const careType = useSelector((state) => state.activeButton.careType);
@@ -16,15 +14,9 @@ function ApplicationDetail() {
       <CareType>
         <h5>돌봄 유형</h5>
         {careType === 'full' ? (
-          <div>
-            <img src={sun} width="14px" alt="" />
-            &nbsp;24시간 상주
-          </div>
+          <div>🌞 &nbsp;24시간 상주</div>
         ) : (
-          <div>
-            <img src={time} width="14px" alt="" />
-            &nbsp;시간제 돌봄
-          </div>
+          <div>⏰ &nbsp;시간제 돌봄</div>
         )}
       </CareType>
       <CareShedule>
