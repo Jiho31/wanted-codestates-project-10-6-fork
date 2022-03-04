@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import DateSelector from './DateSelector';
 import TimeListModal from './TimeListModal';
 import { ReactComponent as Fill } from 'assets/Fill.svg';
-import iconArrow from '../assets/underArrow.svg';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { setShowCalendar } from 'modules/careDate';
 
@@ -61,18 +61,14 @@ export default function Schedule() {
         <span>돌봄 시작 시간</span>
         <SelectTimeSt>
           <div>{careTime.startTime ? careTime.startTime : '선택'}</div>
-          <div className="arrow">
-            <img src={iconArrow} alt="" />
-          </div>
+          <div className="arrow">V</div>
         </SelectTimeSt>
       </MiniWrapperSt>
       <MiniWrapperSt onClick={showCareTimeListHandler}>
         <span>하루 돌봄 시간</span>
         <SelectTimeSt>
           <div>{careTime.careTime ? careTime.careTime : '선택'}</div>
-          <div className="arrow">
-            <img src={iconArrow} alt="" />
-          </div>
+          <div className="arrow">V</div>
         </SelectTimeSt>
       </MiniWrapperSt>
       {showStartTimeList && (
