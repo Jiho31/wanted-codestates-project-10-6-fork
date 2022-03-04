@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Calendar from './Calendar';
-
 export default function DateSelector() {
+  const [targetYear, setTargetYear] = useState(new Date().getFullYear());
+  const [targetMonth, setTargetMonth] = useState(new Date().getMonth() + 1);
+  // const today = new Date(targetYear, targetMonth + 1);
+  // const [month, setMonth] = useState(today.getMonth());
   return (
     <ContainerSt>
       <TopSt>돌봄 날짜 선택</TopSt>
       <CalendarWrapper>
-        <Calendar />
+        <Calendar
+          month={targetMonth}
+          setMonth={setTargetMonth}
+          year={targetYear}
+          setTargetYear={setTargetYear}
+        />
       </CalendarWrapper>
-      <CalendarWrapper>{/* <Calendar /> */}</CalendarWrapper>
+      <CalendarWrapper>
+        {/* <Calendar
+          month={targetMonth + 1}
+          setMonth={setTargetMonth}
+          year={targetYear}
+          setTargetYear={setTargetYear}
+        /> */}
+      </CalendarWrapper>
       <ButtonSt>선택 완료</ButtonSt>
     </ContainerSt>
   );
 }
-
 const ContainerSt = styled.div`
   position: absolute;
   top: 0px;
