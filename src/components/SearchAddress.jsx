@@ -1,24 +1,30 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
-import axios from '../../node_modules/axios/index';
+import axios from 'axios';
 import SearchIcon from 'assets/searchIcon.svg';
 import AddressList from './AddressList';
 
-const SearchAddress = ({ openHandler }) => {
+const SearchAddress = ({ openHandler, setIsOpen }) => {
   const addAddress = useRef(null);
   const [datas, setDatas] = useState();
   const API_KEY = 'devU01TX0FVVEgyMDIyMDEyODIzMjIyNjExMjE5NjE=';
-
-  useEffect(() => {
+  // 자동완성
+  const autoClick = () => {
     const fetchData = async (url) => {
       const { data } = await axios.get(url);
-      setDatas(data);
+      setDatas(data.results.juso);
     };
     fetchData(
-      `https://www.juso.go.kr/addrlink/addrLinkApi.do?currentPage=1&countPerPage=10&keyword=강남대로12길&confmKey=${API_KEY}&resultType=json`,
+      `https://www.juso.go.kr/addrlink/addrLinkApi.do?currentPage=1&countPerPage=10&keyword=${addAddress.current.value}&confmKey=${API_KEY}&resultType=json`,
     );
-  }, [addAddress]);
-  console.log(datas);
+    console.log(datas);
+  };
+  // 주소 컴포넌트 필터링
+  const onOff = () => {
+    if (!datas) return true;
+    if (datas.length === 0) return true;
+    return false;
+  };
 
   return (
     <>
@@ -34,23 +40,23 @@ const SearchAddress = ({ openHandler }) => {
             <MainAddress
               placeholder="주소 또는 건물명으로 검색"
               ref={addAddress}
+              onChange={autoClick}
             />
           </SearchBox>
-
-          <TopTextBox>
-            <p>
-              찾으시려는 도로명 주소의 건물번호 또는 시설명까지
-              <br />
-              상세히 입력 후 검색해주세요.
-              <br />
-              예) 중앙동, 불정로432번길
-            </p>
-          </TopTextBox>
-          {!datas ? (
-            <TopAddressListBox>
-              <AddressList />
-            </TopAddressListBox>
-          ) : null}
+          <TopAddressListBox>
+            <AddressList datas={datas} setIsOpen={setIsOpen} />
+          </TopAddressListBox>
+          {onOff() && (
+            <TopTextBox>
+              <p>
+                찾으시려는 도로명 주소의 건물번호 또는 시설명까지
+                <br />
+                상세히 입력 후 검색해주세요.
+                <br />
+                예) 중앙동, 불정로432번길
+              </p>
+            </TopTextBox>
+          )}
         </TopBox>
         <BottomBox>
           <p>
@@ -116,6 +122,7 @@ const SearchBox = styled.div`
   width: 100%;
   height: auto;
   padding: 0 16px;
+  margin-bottom: 5px;
 `;
 
 const MainAddress = styled.input`
@@ -154,6 +161,9 @@ const TopAddressListBox = styled(TopTextBox)`
   height: auto;
   max-height: 440px;
   overflow: scroll;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 `;
 
 const BottomBox = styled(TopTextBox)`
