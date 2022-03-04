@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import DateSelector from './DateSelector';
 import TimeListModal from './TimeListModal';
 import { ReactComponent as Fill } from 'assets/Fill.svg';
+import { ReactComponent as UnderArrow } from 'assets/UnderArrow.svg';
+import { useSelector } from 'react-redux';
 
 export default function Schedule() {
   const [showStartTimeList, setShowStartTimeList] = useState(false);
@@ -15,6 +17,8 @@ export default function Schedule() {
   const showCareTimeListHandler = () => {
     setShowCareTimeList(!showCareTimeList);
   };
+  const startTime = useSelector((state) => state.careTime.startTime);
+  const careTime = useSelector((state) => state.careTime.careTime);
 
   return (
     <ContainerSt>
@@ -41,15 +45,19 @@ export default function Schedule() {
       <MiniWrapperSt onClick={showStartTimeListHandler}>
         <span>돌봄 시작 시간</span>
         <SelectTimeSt>
-          <div>선택</div>
-          <div>화살표</div>
+          <div>{startTime ? startTime : '선택'}</div>
+          <div className="arrow">
+            <UnderArrow />
+          </div>
         </SelectTimeSt>
       </MiniWrapperSt>
       <MiniWrapperSt onClick={showCareTimeListHandler}>
         <span>하루 돌봄 시간</span>
         <SelectTimeSt>
-          <div>선택</div>
-          <div>화살표</div>
+          <div>{careTime ? careTime : '선택'}</div>
+          <div className="arrow">
+            <UnderArrow />
+          </div>
         </SelectTimeSt>
       </MiniWrapperSt>
       {showStartTimeList && (
@@ -64,7 +72,7 @@ export default function Schedule() {
           showListHandler={showCareTimeListHandler}
         />
       )}
-      <DateSelector />
+      {/* <DateSelector /> */}
     </ContainerSt>
   );
 }
@@ -117,6 +125,10 @@ const SelectTimeSt = styled.div`
   border: none;
   background-color: #f6f6f6;
   padding: 14px 16px;
-  option {
+  font-size: 14px;
+  font-weight: 700;
+  .arrow {
+    width: 16px;
+    height: 10px;
   }
 `;

@@ -1,7 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 function ApplicationDetail() {
+  const startTime = useSelector((state) => state.careTime.startTime);
+  const careTime = useSelector((state) => state.careTime.careTime);
+
   return (
     <Detail>
       <AppDetail>신청 내역</AppDetail>
@@ -14,8 +18,8 @@ function ApplicationDetail() {
         <h5>돌봄 일정</h5>
         <div>
           <div>2022년 1월 12일 ~ 22년 1월 23일</div>
-          <div>오전 10시부터</div>
-          <div>8시간</div>
+          <div>{`${startTime}부터`}</div>
+          <div>{careTime}</div>
         </div>
       </CareShedule>
       <hr />
