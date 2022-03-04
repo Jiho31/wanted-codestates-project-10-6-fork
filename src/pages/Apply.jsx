@@ -17,9 +17,9 @@ export default function Apply() {
       <Header />
       <Container>
         {pageNum < 4 && <PageTitle index={pageNum} />}
-        {pageNum === 0 && <CareSelectBoxes />}
+        {pageNum === 2 && <CareSelectBoxes />}
         {pageNum === 1 && <Schedule />}
-        {pageNum === 2 && <Address />}
+        {pageNum === 0 && <Address />}
         {pageNum === 3 && <ChecknPhoneNumber />}
         {pageNum === 4 && <Complete />}
       </Container>
