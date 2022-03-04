@@ -2,7 +2,7 @@
 const initialState = {
   activateBtn: false,
   number: '',
-  isActive: '',
+  careType: '',
 };
 
 //* 액션 타입
@@ -47,13 +47,13 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         activateBtn: true,
-        isActive: 'part',
+        careType: 'part',
       };
     case SET_FULL:
       return {
         ...state,
         activateBtn: true,
-        isActive: 'full',
+        careType: 'full',
       };
     case CLICK_NEXT: {
       return {
