@@ -30,6 +30,7 @@ const Nav = styled.div`
   position: fixed;
   bottom: 0;
   left: 0;
+  z-index: 8;
 `;
 const PrevButton = styled.button`
   width: 58px;
