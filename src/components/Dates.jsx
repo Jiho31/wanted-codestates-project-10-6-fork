@@ -80,13 +80,21 @@ const HalfBack = styled.div`
   pointer-events: none;
   ${({ startDay, endDay, isIncluded }) => {
     if (startDay && isIncluded) {
-      return css`
-        background-color: rgba(255, 207, 181, 1);
-        right: 0;
-        opacity: 1;
-      `;
+      if (endDay) {
+        return css`
+          background-color: rgba(255, 207, 181, 1);
+          right: 0;
+          opacity: 0;
+        `;
+      } else {
+        return css`
+          background-color: rgba(255, 207, 181, 1);
+          right: 0;
+          opacity: 1;
+        `;
+      }
     }
-    if (endDay) {
+    if (endDay && isIncluded) {
       return css`
         background-color: rgba(255, 207, 181, 1);
         left: 0;
