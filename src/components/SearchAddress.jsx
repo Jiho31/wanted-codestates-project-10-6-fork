@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
+import axios from '../../node_modules/axios/index';
 import SearchIcon from 'assets/searchIcon.svg';
 import AddressList from './AddressList';
 
-const SearchAddress = ({ isOpen, openHandler }) => {
+const SearchAddress = ({ openHandler }) => {
+  const addAddress = useRef(null);
+  const [datas, setDatas] = useState();
+  const API_KEY = 'devU01TX0FVVEgyMDIyMDEyODIzMjIyNjExMjE5NjE=';
+
+  useEffect(() => {
+    const fetchData = async (url) => {
+      const { data } = await axios.get(url);
+      setDatas(data);
+    };
+    fetchData(
+      `https://www.juso.go.kr/addrlink/addrLinkApi.do?currentPage=1&countPerPage=10&keyword=강남대로12길&confmKey=${API_KEY}&resultType=json`,
+    );
+  }, [addAddress]);
+  console.log(datas);
+
   return (
     <>
       <SearchAddressBox>
@@ -15,7 +31,10 @@ const SearchAddress = ({ isOpen, openHandler }) => {
         </TitleBox>
         <TopBox>
           <SearchBox>
-            <MainAddress placeholder="주소 또는 건물명으로 검색" />
+            <MainAddress
+              placeholder="주소 또는 건물명으로 검색"
+              ref={addAddress}
+            />
           </SearchBox>
 
           <TopTextBox>
@@ -27,7 +46,7 @@ const SearchAddress = ({ isOpen, openHandler }) => {
               예) 중앙동, 불정로432번길
             </p>
           </TopTextBox>
-          {!isOpen ? (
+          {!datas ? (
             <TopAddressListBox>
               <AddressList />
             </TopAddressListBox>
@@ -57,6 +76,7 @@ const SearchAddressBox = styled.div`
   left: 0;
   background-color: #fff;
   overflow: hidden;
+  z-index: 9;
 `;
 const TitleBox = styled.div`
   width: 100%;

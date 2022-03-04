@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
@@ -32,7 +32,6 @@ const titleInfo = [
 
 const PageTitle = () => {
   const index = useSelector((state) => state.page.pageNum);
-  console.log(index);
   return (
     <Container>
       <div className="top">

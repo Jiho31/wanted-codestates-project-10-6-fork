@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import ChecknPhoneNumber from 'components/ChecknPhoneNumber';
 import CareSelectBoxes from 'components/CareSelectBoxes';
@@ -19,7 +19,6 @@ export default function Apply() {
         {pageNum < 4 && <PageTitle index={pageNum} />}
         {pageNum === 0 && <CareSelectBoxes />}
         {pageNum === 1 && <Schedule />}
-
         {pageNum === 2 && <Address />}
         {pageNum === 3 && <ChecknPhoneNumber />}
         {pageNum === 4 && <Complete />}
