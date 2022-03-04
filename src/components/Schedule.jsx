@@ -33,7 +33,11 @@ export default function Schedule() {
         <MiniWrapperSt>
           <span>시작일</span>
           <SelectDateSt onClick={showCalendarHandler}>
-            <div>{careDate.startDate ? careDate.startDate : '날짜 선택'}</div>
+            <div>
+              {careDate.startDate.set
+                ? `${careDate.startDate.year}년 ${careDate.startDate.month}월 ${careDate.startDate.date}일`
+                : '날짜 선택'}
+            </div>
             <div>
               <Fill />
             </div>
@@ -42,7 +46,11 @@ export default function Schedule() {
         <MiniWrapperSt>
           <span>종료일</span>
           <SelectDateSt onClick={showCalendarHandler}>
-            <div>{careDate.endDate ? careDate.endDate : '날짜 선택'}</div>
+            <div>
+              {careDate.endDate.set
+                ? `${careDate.endDate.year}년 ${careDate.endDate.month}월 ${careDate.endDate.date}일`
+                : '날짜 선택'}
+            </div>
             <div>
               <Fill />
             </div>

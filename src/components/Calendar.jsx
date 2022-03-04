@@ -89,6 +89,9 @@ export default function Calendar(props) {
               startDay={el === newThisMonth[startDay - 1] ? true : false}
               endDay={el === newThisMonth[endDay - 1] ? true : false}
               isIncluded={endDay ? vaildate(+startDay, +endDay, el) : false}
+              year={year}
+              month={month}
+              date={el}
             >
               {el}
             </Dates>
