@@ -4,12 +4,17 @@ import DateSelector from './DateSelector';
 import TimeListModal from './TimeListModal';
 import { ReactComponent as Fill } from 'assets/Fill.svg';
 import { ReactComponent as UnderArrow } from 'assets/UnderArrow.svg';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setShowCalendar } from 'modules/careDate';
 
 export default function Schedule() {
   const [showStartTimeList, setShowStartTimeList] = useState(false);
   const [showCareTimeList, setShowCareTimeList] = useState(false);
-  // const [select]
+  const careTime = useSelector((state) => state.careTime);
+  const careDate = useSelector((state) => state.careDate);
+  const showCalendar = useSelector((state) => state.careDate.showCalendar);
+
+  const dispatch = useDispatch();
 
   const showStartTimeListHandler = () => {
     setShowStartTimeList(!showStartTimeList);
@@ -18,15 +23,17 @@ export default function Schedule() {
     setShowCareTimeList(!showCareTimeList);
   };
 
-  const careTime = useSelector((state) => state.careTime);
+  const showCalendarHandler = () => {
+    dispatch(setShowCalendar());
+  };
 
   return (
     <ContainerSt>
       <SelectDateWrapperSt>
         <MiniWrapperSt>
           <span>시작일</span>
-          <SelectDateSt>
-            <div>날짜 선택</div>
+          <SelectDateSt onClick={showCalendarHandler}>
+            <div>{careDate.startDate ? careDate.startDate : '날짜 선택'}</div>
             <div>
               <Fill />
             </div>
@@ -34,8 +41,8 @@ export default function Schedule() {
         </MiniWrapperSt>
         <MiniWrapperSt>
           <span>종료일</span>
-          <SelectDateSt>
-            <div>날짜 선택</div>
+          <SelectDateSt onClick={showCalendarHandler}>
+            <div>{careDate.endDate ? careDate.endDate : '날짜 선택'}</div>
             <div>
               <Fill />
             </div>
@@ -72,7 +79,9 @@ export default function Schedule() {
           showListHandler={showCareTimeListHandler}
         />
       )}
-      <DateSelector />
+      {showCalendar && (
+        <DateSelector showCalendarHandler={showCalendarHandler} />
+      )}
     </ContainerSt>
   );
 }

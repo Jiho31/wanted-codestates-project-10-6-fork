@@ -1,5 +1,8 @@
+import { setEndDate, setStartDate } from 'modules/careDate';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled, { css } from 'styled-components';
+
 export default function Dates({
   children,
   setClickday,
@@ -7,9 +10,17 @@ export default function Dates({
   endDay,
   isIncluded,
 }) {
+  const dispatch = useDispatch();
   const execGene = (clickDay) => {
     let { value } = setClickday.next(clickDay);
     if (!value) setClickday.next(clickDay);
+  };
+
+  const setDate = () => {
+    // 선택상태저장
+    const date = '222';
+    dispatch(setStartDate(date));
+    dispatch(setEndDate(date));
   };
   return (
     <>

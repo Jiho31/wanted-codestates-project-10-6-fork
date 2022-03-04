@@ -4,8 +4,16 @@ import careType from './careType';
 import careTime from './careTime';
 import address from './address';
 import activeButton from './activeButton';
+import careDate from './careDate';
 
-const rootReducer = combineReducers({ careType, page, activeButton, address,careTime });
+const rootReducer = combineReducers({
+  careType,
+  page,
+  activeButton,
+  address,
+  careTime,
+  careDate,
+});
 export default rootReducer;
 
 //store 생성은 src/index.js에서
