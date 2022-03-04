@@ -5,9 +5,7 @@ import address from './address';
 import activeButton from './activeButton';
 import careDate from './careDate';
 
-
 const rootReducer = combineReducers({
-  careType,
   page,
   activeButton,
   address,
