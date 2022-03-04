@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as LeftArrow } from 'assets/leftArrow.svg';
 import { ReactComponent as RightArrow } from 'assets/rightArrow.svg';
 import { ReactComponent as Fill } from 'assets/Fill.svg';
+import Dates from 'components/Dates';
 // () => {
 //   setMonth(month + 1);
 //   console.log((month + 1) % 13);
@@ -14,6 +15,8 @@ import { ReactComponent as Fill } from 'assets/Fill.svg';
 // }
 export default function Calendar(props) {
   const { month, setMonth, year, setTargetYear } = props;
+  const [startDay, setStartDay] = useState(null);
+  const [endDay, setEndDay] = useState(null);
   const days = ['일', '월', '화', '수', '목', '금', '토'];
   //
 
@@ -44,6 +47,24 @@ export default function Calendar(props) {
     setMonth(newDate.getMonth() + 1);
     setTargetYear(newDate.getFullYear());
   };
+
+  const init = () => {
+    setStartDay(null);
+    setEndDay(null);
+  };
+  const setClickday = useMemo(() => {
+    return (function* () {
+      while (true) {
+        const startDay = yield;
+        setStartDay(startDay);
+        const endDay = yield 1;
+        setEndDay(endDay);
+        yield 2;
+        init();
+      }
+    })();
+  }, []);
+  const newThisMonth = [...thisMonth.filter((v) => v)];
   return (
     <ContainerSt>
       <Title>
@@ -59,9 +80,26 @@ export default function Calendar(props) {
         {days.map((el, idx) => (
           <Days key={idx}>{el}</Days>
         ))}
-        {thisMonth.map((el, idx) => (
-          <Dates key={idx}>{el}</Dates>
-        ))}
+        {thisMonth.map((el, idx) => {
+          return (
+            <Dates
+              key={idx}
+              setClickday={setClickday}
+              startDay={el === newThisMonth[startDay - 1] ? true : false}
+              endDay={el === newThisMonth[endDay - 1] ? true : false}
+              isIncluded={
+                endDay
+                  ? el >= newThisMonth[startDay - 1] &&
+                    el <= newThisMonth[endDay - 1]
+                    ? true
+                    : false
+                  : false
+              }
+            >
+              {el}
+            </Dates>
+          );
+        })}
       </DatesWrapper>
     </ContainerSt>
   );
@@ -99,13 +137,6 @@ const DatesWrapper = styled.div`
 const Days = styled.div`
   text-align: center;
   font-weight: 700;
-  width: 50px;
-  height: 48px;
-  line-height: 60px;
-`;
-const Dates = styled.div`
-  font-weight: 700;
-  text-align: center;
   width: 50px;
   height: 48px;
   line-height: 60px;

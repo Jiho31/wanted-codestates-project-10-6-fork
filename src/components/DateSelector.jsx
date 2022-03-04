@@ -18,12 +18,12 @@ export default function DateSelector() {
         />
       </CalendarWrapper>
       <CalendarWrapper>
-        <Calendar
+        {/* <Calendar
           month={targetMonth + 1}
           setMonth={setTargetMonth}
           year={targetYear}
           setTargetYear={setTargetYear}
-        />
+        /> */}
       </CalendarWrapper>
       <ButtonSt>선택 완료</ButtonSt>
     </ContainerSt>
