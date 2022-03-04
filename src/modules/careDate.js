@@ -1,9 +1,7 @@
-import { act } from 'react-dom/test-utils';
-import { Switch } from 'react-router-dom';
-
 const SET_START_DATE = 'careDate/SET_START_DATE';
 const SET_END_DATE = 'careDate/SET_END_DATE';
 const SET_SHOW_CALENDAR = 'careDate/SHOW_CALENDAR';
+const DATE_INIT = 'careDate/DATE_INIT';
 
 export const setStartDate = (year, month, date) => ({
   type: SET_START_DATE,
@@ -18,6 +16,7 @@ export const setEndDate = (year, month, date) => ({
   date,
 });
 export const setShowCalendar = () => ({ type: SET_SHOW_CALENDAR });
+export const dateInit = () => ({ type: DATE_INIT });
 
 const initialState = {
   startDate: { year: null, month: null, date: null, set: false },
@@ -46,6 +45,12 @@ export default function careDate(state = initialState, action) {
           date: action.date,
           set: true,
         },
+      };
+    case DATE_INIT:
+      return {
+        startDate: { year: null, month: null, date: null, set: false },
+        endDate: { year: null, month: null, date: null, set: false },
+        showCalendar: false,
       };
     case SET_SHOW_CALENDAR:
       return { ...state, showCalendar: !state.showCalendar };

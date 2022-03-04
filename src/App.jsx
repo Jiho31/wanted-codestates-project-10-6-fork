@@ -25,7 +25,7 @@ export default App;
 
 const Wrapper = styled.div`
   width: 360px;
-  height: 812px;
+  /* height: 900px; */
   display: flex;
   flex-direction: column;
   align-items: center;
