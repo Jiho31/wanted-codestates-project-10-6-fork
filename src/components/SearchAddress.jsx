@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { debounce } from 'lodash';
-import SearchIcon from 'assets/searchIcon.svg';
+import { FaSearch } from 'react-icons/fa';
 import AddressList from './AddressList';
 
 const SearchAddress = ({ openHandler, setIsOpen }) => {
@@ -42,7 +42,7 @@ const SearchAddress = ({ openHandler, setIsOpen }) => {
         <TopBox>
           <SearchBox>
             <MainAddress
-              placeholder="주소 또는 건물명으로 검색"
+              placeholder="🔍 &nbsp; 주소 또는 건물명으로 검색"
               ref={addAddress}
               onChange={debounceOnChange}
             />
@@ -140,8 +140,6 @@ const MainAddress = styled.input`
 
   ::placeholder {
     color: #b6b3b3;
-    padding-left: 25px;
-    background-image: url(${SearchIcon});
     background-repeat: no-repeat;
     background-position: left center;
     background-size: 15px;

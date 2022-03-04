@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import DateSelector from './DateSelector';
 import TimeListModal from './TimeListModal';
-import { ReactComponent as Fill } from 'assets/Fill.svg';
+import { AiOutlineCalendar } from 'react-icons/ai';
+import { IoIosArrowDown } from 'react-icons/io';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setShowCalendar } from 'modules/careDate';
@@ -39,7 +40,7 @@ export default function Schedule() {
                 : '날짜 선택'}
             </div>
             <div>
-              <Fill />
+              <AiOutlineCalendar />
             </div>
           </SelectDateSt>
         </MiniWrapperSt>
@@ -52,7 +53,7 @@ export default function Schedule() {
                 : '날짜 선택'}
             </div>
             <div>
-              <Fill />
+              <AiOutlineCalendar />
             </div>
           </SelectDateSt>
         </MiniWrapperSt>
@@ -61,14 +62,18 @@ export default function Schedule() {
         <span>돌봄 시작 시간</span>
         <SelectTimeSt>
           <div>{careTime.startTime ? careTime.startTime : '선택'}</div>
-          <div className="arrow">V</div>
+          <div className="arrow">
+            <IoIosArrowDown />
+          </div>
         </SelectTimeSt>
       </MiniWrapperSt>
       <MiniWrapperSt onClick={showCareTimeListHandler}>
         <span>하루 돌봄 시간</span>
         <SelectTimeSt>
           <div>{careTime.careTime ? careTime.careTime : '선택'}</div>
-          <div className="arrow">V</div>
+          <div className="arrow">
+            <IoIosArrowDown />
+          </div>
         </SelectTimeSt>
       </MiniWrapperSt>
       {showStartTimeList && (

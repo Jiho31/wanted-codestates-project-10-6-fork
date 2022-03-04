@@ -1,8 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import styled from 'styled-components';
-import { ReactComponent as LeftArrow } from 'assets/leftArrow.svg';
-import { ReactComponent as RightArrow } from 'assets/rightArrow.svg';
-import { ReactComponent as Fill } from 'assets/Fill.svg';
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
+
 import Dates from 'components/Dates';
 
 export default function Calendar(props) {
@@ -12,7 +11,6 @@ export default function Calendar(props) {
   const days = ['일', '월', '화', '수', '목', '금', '토'];
   const preLastInfo = new Date(year, month - 1, 0);
   const thisLastInfo = new Date(year, month, 0);
-
   const preLastDate = preLastInfo.getDate();
   const preLastDay = preLastInfo.getDay();
   const thisLastDate = thisLastInfo.getDate();
@@ -70,11 +68,15 @@ export default function Calendar(props) {
     <ContainerSt>
       <Title>
         <div className="arrow">
-          <LeftArrow onClick={() => monthHandler(-1)} />
+          <div onClick={() => monthHandler(-1)}>
+            <AiOutlineArrowLeft />
+          </div>
         </div>
         <div className="thisMonth">{`${year}년 ${month}월`}</div>
         <div className="arrow">
-          <RightArrow onClick={() => monthHandler(1)} />
+          <div onClick={() => monthHandler(1)}>
+            <AiOutlineArrowRight />
+          </div>
         </div>
       </Title>
       <DatesWrapper>
