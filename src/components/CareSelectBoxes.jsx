@@ -1,8 +1,7 @@
 import React from 'react';
 import SelectBox from 'components/SelectBox';
 import styled from 'styled-components';
-import Time from 'assets/time.svg';
-import Sun from 'assets/sun.svg';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { setPart, setFull } from 'modules/activeButton';
 
@@ -18,12 +17,12 @@ export default function CareSelectBoxes() {
     <div>
       <BoxWrapper>
         <div onClick={onSetFull}>
-          <SelectBox icon={Sun} isActive={isActive === 'full'}>
+          <SelectBox icon={`🌞`} isActive={isActive === 'full'}>
             24시간 상주
           </SelectBox>
         </div>
         <div onClick={onSetPart}>
-          <SelectBox icon={Time} isActive={isActive === 'part'}>
+          <SelectBox icon={`⏰`} isActive={isActive === 'part'}>
             시간제 돌봄
           </SelectBox>
         </div>
