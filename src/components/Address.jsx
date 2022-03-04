@@ -35,7 +35,9 @@ const Address = () => {
             {!choiceAddress ? (
               <div>주소 또는 건물명으로 검색</div>
             ) : (
-              <div>{choiceAddress.split(' ').slice(0, 3).join(' ')}</div>
+              <div className="choicaAddressFontColor">
+                {choiceAddress.split(' ').slice(0, 3).join(' ')}
+              </div>
             )}
           </MainAddress>
           {!choiceAddress ? null : (
@@ -98,6 +100,10 @@ const MainAddress = styled.div`
     margin-left: 30px;
     white-space: nowrap;
     color: #b6b3b3;
+  }
+
+  .choicaAddressFontColor {
+    color: #5b5555;
   }
 `;
 
