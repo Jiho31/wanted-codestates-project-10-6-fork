@@ -23,29 +23,83 @@ export default function Dates({
     dispatch(setEndDate(date));
   };
   return (
-    <>
+    <DIV>
       <Date
         startDay={startDay}
         endDay={endDay}
         isIncluded={isIncluded}
-        onClick={(e) => execGene(e.target.innerText)}
+        onClick={(e) => children && execGene(e.target.innerText)}
       >
         {children}
       </Date>
-    </>
+      {(startDay || endDay) && (
+        <HalfBack startDay={startDay} endDay={endDay} isIncluded={isIncluded} />
+      )}
+    </DIV>
   );
 }
-
-const Date = styled.div`
+const DIV = styled.div`
   position: relative;
+  width: 50px;
+  height: 48px;
+`;
+const Date = styled.div`
+  position: absolute;
   font-weight: 700;
   text-align: center;
+  z-index: 8;
   width: 50px;
   height: 48px;
   line-height: 60px;
+  cursor: pointer;
   color: ${({ startDay, endDay }) => (startDay || endDay) && 'white'};
   border-radius: ${({ startDay, endDay }) => (startDay || endDay) && '50%'};
-  background-color: ${({ startDay, endDay, isIncluded }) => {
-    return isIncluded && 'rgba(255, 132, 80, 1)';
-  }};
+  ${({ startDay, endDay, isIncluded }) => {
+    if (startDay || endDay) {
+      return css`
+        background-color: rgba(255, 132, 80, 1);
+      `;
+    } else {
+      if (isIncluded) {
+        return css`
+          background-color: rgba(255, 207, 181, 1);
+        `;
+      }
+    }
+  }}
+  &:hover {
+    background-color: rgba(255, 132, 80, 1);
+  }
+`;
+const HalfBack = styled.div`
+  position: absolute;
+  top: 0;
+  width: 25px;
+  height: 48px;
+  z-index: 7;
+  pointer-events: none;
+  ${({ startDay, endDay, isIncluded }) => {
+    if (startDay && isIncluded) {
+      if (endDay) {
+        return css`
+          background-color: rgba(255, 207, 181, 1);
+          right: 0;
+          opacity: 0;
+        `;
+      } else {
+        return css`
+          background-color: rgba(255, 207, 181, 1);
+          right: 0;
+          opacity: 1;
+        `;
+      }
+    }
+    if (endDay && isIncluded) {
+      return css`
+        background-color: rgba(255, 207, 181, 1);
+        left: 0;
+        opacity: 1;
+      `;
+    }
+  }}
 `;

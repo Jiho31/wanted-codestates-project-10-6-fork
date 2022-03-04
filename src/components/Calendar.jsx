@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as LeftArrow } from 'assets/leftArrow.svg';
@@ -13,12 +12,11 @@ export default function Calendar(props) {
   const days = ['일', '월', '화', '수', '목', '금', '토'];
   const preLastInfo = new Date(year, month - 1, 0);
   const thisLastInfo = new Date(year, month, 0);
-  
+
   const preLastDate = preLastInfo.getDate();
   const preLastDay = preLastInfo.getDay();
   const thisLastDate = thisLastInfo.getDate();
   const thisLastDay = thisLastInfo.getDay();
-
 
   const preDates = [];
   const nextDates = [];
@@ -34,7 +32,6 @@ export default function Calendar(props) {
   const thisDates = [...Array(thisLastDate + 1).keys()].slice(1);
 
   const thisMonth = [...preDates, ...thisDates, ...nextDates];
-
 
   const monthHandler = (n) => {
     const newDate = new Date(year, month + n, 0);
@@ -59,25 +56,31 @@ export default function Calendar(props) {
     })();
   }, []);
   const newThisMonth = [...thisMonth.filter((v) => v)];
-
+  const vaildate = (startDay, endDay, el) => {
+    if (startDay <= endDay) {
+      return el >= newThisMonth[startDay - 1] && el <= newThisMonth[endDay - 1]
+        ? true
+        : false;
+    } else {
+      setStartDay(endDay);
+      setEndDay(startDay);
+    }
+  };
   return (
     <ContainerSt>
       <Title>
         <div className="arrow">
-
           <LeftArrow onClick={() => monthHandler(-1)} />
         </div>
         <div className="thisMonth">{`${year}년 ${month}월`}</div>
         <div className="arrow">
           <RightArrow onClick={() => monthHandler(1)} />
-
         </div>
       </Title>
       <DatesWrapper>
         {days.map((el, idx) => (
           <Days key={idx}>{el}</Days>
         ))}
-
         {thisMonth.map((el, idx) => {
           return (
             <Dates
@@ -85,20 +88,12 @@ export default function Calendar(props) {
               setClickday={setClickday}
               startDay={el === newThisMonth[startDay - 1] ? true : false}
               endDay={el === newThisMonth[endDay - 1] ? true : false}
-              isIncluded={
-                endDay
-                  ? el >= newThisMonth[startDay - 1] &&
-                    el <= newThisMonth[endDay - 1]
-                    ? true
-                    : false
-                  : false
-              }
+              isIncluded={endDay ? vaildate(+startDay, +endDay, el) : false}
             >
               {el}
             </Dates>
           );
         })}
-
       </DatesWrapper>
     </ContainerSt>
   );
@@ -132,7 +127,6 @@ const DatesWrapper = styled.div`
   justify-content: center;
   width: 350px;
 `;
-
 const Days = styled.div`
   text-align: center;
   font-weight: 700;
