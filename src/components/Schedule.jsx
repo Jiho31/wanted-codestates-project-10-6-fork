@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import DateSelector from './DateSelector';
 import TimeListModal from './TimeListModal';
 import { ReactComponent as Fill } from 'assets/Fill.svg';
-import UnderArrow from 'assets/UnderArrow.svg';
+import UnderArrow from '../assets/UnderArrow.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import { setShowCalendar } from 'modules/careDate';
 
