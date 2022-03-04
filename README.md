@@ -1,8 +1,8 @@
 
 ## 모듈
-- React `$ npx creat-react-app template`
+- React `$ npx create-react-app template`
 - React-router-dom `$ npm i react-router-dom`
-- styled-component `$ npm install --save styled-component`
+- styled-components `$ npm install --save styled-components`
 - styled-reset `$ npm i styled-reset`
 : reset css 설정
 - redux `$npm i redux`
