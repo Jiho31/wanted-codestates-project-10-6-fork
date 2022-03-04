@@ -33,7 +33,8 @@ const ContainerSt = styled.div`
   position: absolute;
   top: 0px;
   left: -16px;
-  background-color: lightgray;
+  background-color: white;
+  /* background-color: lightgray; */
   width: 360px;
   height: 1000px;
 `;
@@ -46,7 +47,7 @@ const TopSt = styled.div`
   position: relative;
 `;
 const CalendarWrapper = styled.div`
-  background-color: skyblue;
+  /* background-color: skyblue; */
   border-top: 1px solid #f6f6f6;
   height: 444px;
 `;
