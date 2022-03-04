@@ -1,5 +1,7 @@
+import { clickNext, clickPrev } from 'modules/activeButton';
 import { NEXT_PAGE, PREV_PAGE } from 'modules/page';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
@@ -7,14 +9,22 @@ const BottomNav = () => {
   const dispatch = useDispatch();
   const handleNextPage = () => {
     dispatch({ type: NEXT_PAGE });
+    dispatch(clickNext());
   };
   const handlePrevPage = () => {
     dispatch({ type: PREV_PAGE });
+    dispatch(clickPrev());
   };
+  const checkN = useSelector((state) => state.activeButton.activateBtn);
+
   return (
     <Nav>
       <PrevButton onClick={handlePrevPage}>이전</PrevButton>
-      <NextButton className="unabled" onClick={handleNextPage}>
+      <NextButton
+        className="unabled"
+        onClick={handleNextPage}
+        disabled={!checkN}
+      >
         다음
       </NextButton>
     </Nav>
