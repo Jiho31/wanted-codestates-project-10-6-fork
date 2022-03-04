@@ -1,9 +1,17 @@
 import { combineReducers } from 'redux';
-import counter from './counter';
-//! 한프로젝트에 리듀서가 여러개일경우 한 리듀서로 합쳐사용한다.
-//! 합쳐진 리듀서를 루트 리듀서라고 부른다.
+import page from './page';
+import careTime from './careTime';
+import address from './address';
+import activeButton from './activeButton';
+import careDate from './careDate';
 
-const rootReducer = combineReducers({ counter });
+const rootReducer = combineReducers({
+  page,
+  activeButton,
+  address,
+  careTime,
+  careDate,
+});
 
 export default rootReducer;
 
@@ -14,3 +22,5 @@ export default rootReducer;
 //시작 시간 "startTime"
 //돌봄 시간 "careTime"
 //주소 "address"
+// 버튼 활성화 "activeButton"
+// -> careType 은 activeButton 내부에서 처리
