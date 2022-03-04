@@ -17,8 +17,8 @@ export default function Schedule() {
   const showCareTimeListHandler = () => {
     setShowCareTimeList(!showCareTimeList);
   };
-  const startTime = useSelector((state) => state.careTime.startTime);
-  const careTime = useSelector((state) => state.careTime.careTime);
+
+  const careTime = useSelector((state) => state.careTime);
 
   return (
     <ContainerSt>
@@ -45,7 +45,7 @@ export default function Schedule() {
       <MiniWrapperSt onClick={showStartTimeListHandler}>
         <span>돌봄 시작 시간</span>
         <SelectTimeSt>
-          <div>{startTime ? startTime : '선택'}</div>
+          <div>{careTime.startTime ? careTime.startTime : '선택'}</div>
           <div className="arrow">
             <UnderArrow />
           </div>
@@ -54,7 +54,7 @@ export default function Schedule() {
       <MiniWrapperSt onClick={showCareTimeListHandler}>
         <span>하루 돌봄 시간</span>
         <SelectTimeSt>
-          <div>{careTime ? careTime : '선택'}</div>
+          <div>{careTime.careTime ? careTime.careTime : '선택'}</div>
           <div className="arrow">
             <UnderArrow />
           </div>
