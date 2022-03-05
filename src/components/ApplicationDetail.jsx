@@ -6,8 +6,6 @@ function ApplicationDetail() {
   const careType = useSelector((state) => state.activeButton.careType);
   const careTime = useSelector((state) => state.careTime);
   const address = useSelector((state) => state.address);
-  console.log(address);
-  const careTypeText = () => {};
   return (
     <Detail>
       <AppDetail>신청 내역</AppDetail>

@@ -18,8 +18,8 @@ export default function Apply() {
       <Container>
         {pageNum < 4 && <PageTitle index={pageNum} />}
         {pageNum === 0 && <CareSelectBoxes />}
-        {pageNum === 2 && <Schedule />}
-        {pageNum === 1 && <Address />}
+        {pageNum === 1 && <Schedule />}
+        {pageNum === 2 && <Address />}
         {pageNum === 3 && <ChecknPhoneNumber />}
         {pageNum === 4 && <Complete />}
       </Container>
@@ -32,4 +32,5 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   padding: 56px 0 64px 0;
+  border-radius: 10px;
 `;

@@ -32,7 +32,7 @@ const Wrapper = styled.div`
   margin: auto;
   padding: 0 16px;
   position: fixed;
-  top: 50%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
