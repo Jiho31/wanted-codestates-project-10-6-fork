@@ -3,16 +3,20 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 function ApplicationDetail() {
+  const careType = useSelector((state) => state.activeButton.careType);
   const careTime = useSelector((state) => state.careTime);
-
+  const address = useSelector((state) => state.address);
   return (
     <Detail>
       <AppDetail>신청 내역</AppDetail>
       <CareType>
         <h5>돌봄 유형</h5>
-        <div>🕰 시간제 돌봄</div>
+        {careType === 'full' ? (
+          <div>🌞 &nbsp;24시간 상주</div>
+        ) : (
+          <div>⏰ &nbsp;시간제 돌봄</div>
+        )}
       </CareType>
-      <hr />
       <CareShedule>
         <h5>돌봄 일정</h5>
         <div>
@@ -21,16 +25,15 @@ function ApplicationDetail() {
           <div>{careTime.careTime}</div>
         </div>
       </CareShedule>
-      <hr />
       <Address>
         <h5>돌봄 주소</h5>
-        <div>서울특별시 강남구 테헤란로 77길 9 (삼성동)</div>
+        <div>{address.roadAddr}</div>
         <DetailAddress>
           <p>지번</p>&nbsp;
-          <span>서울특별시 강남구 삼성동 143-27</span>
+          <span>{address.jibunAddr}</span>
         </DetailAddress>
         <div>
-          <span>케어닥주공아파트 102동 1204호</span>
+          <span>{address.userAddr}</span>
         </div>
       </Address>
     </Detail>
@@ -39,15 +42,14 @@ function ApplicationDetail() {
 
 const Detail = styled.div`
   width: 288px;
-  height: 452px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   /* border: 1px solid black; */
-  margin: 32px 16px;
+  margin: 0 32px 16px;
   > hr {
-    background-color: silver;
-    border-top: 1px solid silver;
-    color: silver;
+    background-color: #f6f6f6;
+    height: 1px;
     width: 288px;
     margin-bottom: 30px;
   }
@@ -60,28 +62,33 @@ const AppDetail = styled.h3`
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 16px;
-  margin-top: 7px;
+  margin-top: 32px;
 `;
 
 const CareType = styled.div`
   height: 56px;
   margin-bottom: 16px;
+  padding-bottom: 16px;
   > h5 {
     height: 20px;
+    line-height: 20px;
     font-size: 14px;
     font-weight: 700;
-    margin-bottom: 16px;
   }
   > div {
-    height: 20px;
+    border-bottom: 1px solid #f6f6f6;
+    height: 52px;
     font-size: 14px;
     font-weight: 400;
+    padding: 16px 0;
   }
 `;
 
 const CareShedule = styled.div`
   /* height: 112px; */
-  margin-bottom: 10px;
+  border-bottom: 1px solid #f6f6f6;
+
+  margin-top: 16px;
   > h5 {
     font-size: 14px;
     font-weight: 700;
@@ -92,22 +99,23 @@ const CareShedule = styled.div`
     > div {
       height: 20px;
       font-size: 14px;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
     }
   }
 `;
 
 const Address = styled.div`
+  margin-top: 16px;
   > h5 {
     height: 20px;
     font-size: 14px;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
   > div {
     font-size: 14px;
     height: 20px;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
   }
 `;
 
@@ -122,6 +130,10 @@ const DetailAddress = styled.div`
     text-align: center;
     top: -4px;
     background: #7d78781a;
+  }
+  > span {
+    font-size: 12px;
+    color: #7d7878;
   }
 `;
 

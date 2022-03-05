@@ -10,10 +10,12 @@ export default function Dates({
   endDay,
   startDay,
 }) {
+
   const execGene = (clickDay) => {
     let { value } = setClickday.next(clickDay);
     if (!value) setClickday.next(clickDay);
   };
+
   const setDate = () => {
     children && execGene(days);
   };

@@ -25,14 +25,14 @@ export default App;
 
 const Wrapper = styled.div`
   width: 360px;
-  height: 812px;
+  /* height: 900px; */
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: auto;
   padding: 0 16px;
   position: fixed;
-  top: 50%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;

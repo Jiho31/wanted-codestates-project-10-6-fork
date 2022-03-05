@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from 'react';
 import styled, { css } from 'styled-components';
 import Calendar from './Calendar';
@@ -68,6 +69,7 @@ export default function DateSelector({ showCalendarHandler }) {
         />
       </CalendarWrapper>
       <ButtonSt endDay={endDay} onClick={selectedHandler}>
+
         선택 완료
       </ButtonSt>
     </ContainerSt>
@@ -76,16 +78,20 @@ export default function DateSelector({ showCalendarHandler }) {
 const ContainerSt = styled.div`
   position: absolute;
   top: 0px;
-  left: -16px;
+  left: 0px;
   background-color: white;
-  /* background-color: lightgray; */
   width: 360px;
-  height: 1000px;
-  z-index: 100;
+  min-height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  z-index: 9;
 `;
 const TopSt = styled.div`
   text-align: center;
   line-height: 48px;
+  font-weight: 700;
   width: 360px;
   height: 48px;
   padding: 0 17.8px;
@@ -93,7 +99,6 @@ const TopSt = styled.div`
   font-weight: 700;
 `;
 const CalendarWrapper = styled.div`
-  /* background-color: skyblue; */
   border-top: 1px solid #f6f6f6;
   height: 444px;
 `;
@@ -102,8 +107,8 @@ const ButtonSt = styled.div`
   width: 360px;
   text-align: center;
   line-height: 48px;
-  position: absolute;
-  bottom: 0px;
+  /* position: absolute; */
+  /* bottom: 0px; */
   height: 48px;
   font-weight: 700;
   ${({ endDay }) => {

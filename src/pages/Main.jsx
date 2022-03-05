@@ -16,10 +16,13 @@ export default function Main() {
   );
 }
 const Wrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 360px;
+  height: 812px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
 `;
 const H5 = styled.h5`
   font-family: Spoqa Han Sans Neo;

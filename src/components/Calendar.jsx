@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as LeftArrow } from 'assets/leftArrow.svg';
-import { ReactComponent as RightArrow } from 'assets/rightArrow.svg';
-import { ReactComponent as Fill } from 'assets/Fill.svg';
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
+
 import Dates from 'components/Dates';
 
 export default function Calendar(props) {
@@ -51,11 +50,15 @@ export default function Calendar(props) {
     <ContainerSt>
       <Title>
         <div className="arrow">
-          <LeftArrow onClick={() => monthHandler(-1)} />
+          <div onClick={() => monthHandler(-1)}>
+            <AiOutlineArrowLeft />
+          </div>
         </div>
         <div className="thisMonth">{`${newYear}년 ${newMonth}월`}</div>
         <div className="arrow">
-          <RightArrow onClick={() => monthHandler(1)} />
+          <div onClick={() => monthHandler(1)}>
+            <AiOutlineArrowRight />
+          </div>
         </div>
       </Title>
       <DatesWrapper>

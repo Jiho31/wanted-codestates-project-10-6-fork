@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import DateSelector from './DateSelector';
 import TimeListModal from './TimeListModal';
-import { ReactComponent as Fill } from 'assets/Fill.svg';
-import { ReactComponent as UnderArrow } from 'assets/UnderArrow.svg';
+import { AiOutlineCalendar } from 'react-icons/ai';
+import { IoIosArrowDown } from 'react-icons/io';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { setShowCalendar } from 'modules/careDate';
+import { createTextChangeRange } from '../../node_modules/typescript/lib/typescript';
+import { clickPrev } from 'modules/activeButton';
 
 export default function Schedule() {
   const [showStartTimeList, setShowStartTimeList] = useState(false);
@@ -15,6 +18,24 @@ export default function Schedule() {
   const showCalendar = useSelector((state) => state.careDate.showCalendar);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (
+      careDate.startDate.set &&
+      careDate.endDate.set &&
+      careTime.startTime &&
+      careTime.careTime
+    ) {
+      console.log('ON!!');
+      dispatch(clickPrev());
+    }
+  }, [
+    careDate.endDate.set,
+    careDate.startDate.set,
+    careTime.careTime,
+    careTime.startTime,
+    dispatch,
+  ]);
 
   const showStartTimeListHandler = () => {
     setShowStartTimeList(!showStartTimeList);
@@ -39,7 +60,7 @@ export default function Schedule() {
                 : '날짜 선택'}
             </div>
             <div>
-              <Fill />
+              <AiOutlineCalendar />
             </div>
           </SelectDateSt>
         </MiniWrapperSt>
@@ -52,7 +73,7 @@ export default function Schedule() {
                 : '날짜 선택'}
             </div>
             <div>
-              <Fill />
+              <AiOutlineCalendar />
             </div>
           </SelectDateSt>
         </MiniWrapperSt>
@@ -62,7 +83,7 @@ export default function Schedule() {
         <SelectTimeSt>
           <div>{careTime.startTime ? careTime.startTime : '선택'}</div>
           <div className="arrow">
-            <UnderArrow />
+            <IoIosArrowDown />
           </div>
         </SelectTimeSt>
       </MiniWrapperSt>
@@ -71,7 +92,7 @@ export default function Schedule() {
         <SelectTimeSt>
           <div>{careTime.careTime ? careTime.careTime : '선택'}</div>
           <div className="arrow">
-            <UnderArrow />
+            <IoIosArrowDown />
           </div>
         </SelectTimeSt>
       </MiniWrapperSt>
@@ -98,7 +119,6 @@ const ContainerSt = styled.section`
   width: 100%;
   height: 458px;
   padding: 32px 0 64px;
-  position: relative;
 `;
 const SelectDateWrapperSt = styled.div`
   width: 100%;

@@ -42,17 +42,17 @@ function ChecknPhoneNumber() {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
 `;
 
 const DetailContainer = styled.div`
   width: 320px;
-  height: 452px;
+  /* height: 452px; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   box-shadow: 0px 0px 16px 0px #0000000d;
   margin-bottom: 32px;
@@ -66,6 +66,10 @@ const PhoneNumber = styled.input`
   border: 1px solid #eeeeee;
   border-radius: 4px;
   padding-left: 16px;
+  margin-bottom: 62px;
+  ::placeholder {
+    color: #b6b3b3;
+  }
 `;
 
 export default ChecknPhoneNumber;

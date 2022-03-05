@@ -14,7 +14,7 @@ export default function SelectBox({ children, icon, isActive }) {
 
   return (
     <Box className="box" ref={boxRef}>
-      <Icon src={icon} />
+      <div>{icon}</div>
       <span>{children}</span>
     </Box>
   );
@@ -43,7 +43,9 @@ const Box = styled.div`
   // margin: 0px 8px;
   font-size: 14px;
   font-weight: 700;
-
+  div {
+    font-size: 50px;
+  }
   &.active {
     background-color: #ff8450;
   }
