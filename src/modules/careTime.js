@@ -1,5 +1,3 @@
-import reducer from './page';
-
 const SET_START_TIME = 'careTime/SET_START_TIME';
 const SET_CARE_TIME = 'careTime/SET_CARE_TIME';
 const TIME_INIT = 'careTime/TIME_INIT';

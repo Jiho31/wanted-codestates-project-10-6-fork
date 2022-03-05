@@ -10,7 +10,6 @@ export default function Dates({
   endDay,
   startDay,
 }) {
-
   const execGene = (clickDay) => {
     let { value } = setClickday.next(clickDay);
     if (!value) setClickday.next(clickDay);
@@ -68,7 +67,7 @@ const DateC = styled.div`
           (sY !== year || sM !== month || sD !== el)
         )
           return css`
-            color: black;
+            color: #5b5555;
           `;
         return css`
           background-color: rgba(255, 132, 80, 1);
@@ -76,7 +75,7 @@ const DateC = styled.div`
       }
       if (sY !== year || sM !== month || sD !== el)
         return css`
-          color: black;
+          color: #5b5555;
         `;
       return css`
         background-color: rgba(255, 132, 80, 1);

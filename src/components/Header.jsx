@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useNavigate } from '../../node_modules/react-router/index';
+import { useNavigate } from 'react-router-dom';
 
 //
 import { useDispatch } from 'react-redux';

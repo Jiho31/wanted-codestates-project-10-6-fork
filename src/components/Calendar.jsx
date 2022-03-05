@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
-
 import Dates from 'components/Dates';
 
 export default function Calendar(props) {

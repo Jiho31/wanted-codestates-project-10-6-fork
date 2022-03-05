@@ -7,7 +7,6 @@ import { IoIosArrowDown } from 'react-icons/io';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setShowCalendar } from 'modules/careDate';
-import { createTextChangeRange } from '../../node_modules/typescript/lib/typescript';
 import { clickPrev } from 'modules/activeButton';
 
 export default function Schedule() {

@@ -1,7 +1,6 @@
 import React from 'react';
 import SelectBox from 'components/SelectBox';
 import styled from 'styled-components';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { setPart, setFull } from 'modules/activeButton';
 
