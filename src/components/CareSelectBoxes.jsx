@@ -1,15 +1,12 @@
 import React from 'react';
 import SelectBox from 'components/SelectBox';
 import styled from 'styled-components';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { setPart, setFull } from 'modules/activeButton';
 
 export default function CareSelectBoxes() {
   const isActive = useSelector((state) => state.activeButton.careType);
-
   const dispatch = useDispatch();
-
   const onSetFull = () => dispatch(setFull());
   const onSetPart = () => dispatch(setPart());
 

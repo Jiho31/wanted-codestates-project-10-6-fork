@@ -1,89 +1,42 @@
-import { setEndDate, setStartDate } from 'modules/careDate';
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
-export default function Dates(props) {
-  const {
-    children,
-    setClickday,
-    startDay,
-    endDay,
-    isIncluded,
-    year,
-    month,
-    date,
-  } = props;
-  const dispatch = useDispatch();
+export default function Dates({
+  children,
+  setClickday,
+  days,
+  setStartDay,
+  setEndDay,
+  endDay,
+  startDay,
+}) {
   const execGene = (clickDay) => {
     let { value } = setClickday.next(clickDay);
     if (!value) setClickday.next(clickDay);
   };
 
-  const makeCompareAbleDate = (year, month, date) => {
-    month = month < 10 ? '0' + month : month;
-    date = date < 10 ? '0' + date : date;
-    return Number(`${year}${month}${date}`);
-  };
-
-  const dateState = useSelector((state) => state.careDate);
-
   const setDate = () => {
-    const thisDate = makeCompareAbleDate(year, month, date);
-    console.log(dateState);
-    // 스토어에 startDate가 없으면
-    const startSet = dateState.startDate.set;
-    const endSet = dateState.endDate.set;
-    console.log(startSet, endSet);
-    console.log(startSet && endSet);
-    if (startSet && endSet) {
-      console.log('둘다있네');
-      dispatch(setStartDate(year, month, date));
-      dispatch(setEndDate(null, null, null, false));
-    } else {
-      if (!startSet) {
-        console.log('end');
-        dispatch(setStartDate(year, month, date));
-      } else {
-        // startDate가 있으면
-        const startDate = makeCompareAbleDate(
-          dateState.startDate.year,
-          dateState.startDate.month,
-          dateState.startDate.date,
-        );
-
-        if (thisDate > startDate) {
-          dispatch(setEndDate(year, month, date));
-        } else {
-          //선택날짜가 startDate보다 빠르다면
-          //기존 startDate가 endDate가되고
-          //선택한 날이 startDate가된다.
-          dispatch(
-            setEndDate(
-              dateState.startDate.year,
-              dateState.startDate.month,
-              dateState.startDate.date,
-            ),
-          );
-          dispatch(setStartDate(year, month, date));
-        }
-      }
-    }
+    children && execGene(days);
   };
+
+  useEffect(() => {
+    if (!endDay) return;
+    const { year: sY, month: sM, el: sD } = startDay;
+    const { year: eY, month: eM, el: eD } = endDay;
+    if (
+      new Date(sY, sM - 1, sD).getTime() > new Date(eY, eM - 1, eD).getTime()
+    ) {
+      setStartDay(endDay);
+      setEndDay(startDay);
+    }
+  }, [setStartDay, setEndDay, startDay, endDay]);
 
   return (
     <DIV onClick={setDate}>
-      <Date
-        startDay={startDay}
-        endDay={endDay}
-        isIncluded={isIncluded}
-        onClick={(e) => children && execGene(e.target.innerText)}
-      >
+      <DateC startDay={startDay} endDay={endDay} days={days}>
         {children}
-      </Date>
-      {(startDay || endDay) && (
-        <HalfBack startDay={startDay} endDay={endDay} isIncluded={isIncluded} />
-      )}
+      </DateC>
+      {days.el && <HalfBack startDay={startDay} endDay={endDay} days={days} />}
     </DIV>
   );
 }
@@ -92,7 +45,7 @@ const DIV = styled.div`
   width: 50px;
   height: 48px;
 `;
-const Date = styled.div`
+const DateC = styled.div`
   position: absolute;
   font-weight: 700;
   text-align: center;
@@ -103,17 +56,49 @@ const Date = styled.div`
   cursor: pointer;
   color: ${({ startDay, endDay }) => (startDay || endDay) && 'white'};
   border-radius: ${({ startDay, endDay }) => (startDay || endDay) && '50%'};
-  ${({ startDay, endDay, isIncluded }) => {
+  ${({ startDay, endDay, days }) => {
+    const { year, month, el } = days;
     if (startDay || endDay) {
+      const { year: sY, month: sM, el: sD } = startDay;
+      if (endDay) {
+        const { year: eY, month: eM, el: eD } = endDay;
+        if (
+          (eY !== year || eM !== month || eD !== el) &&
+          (sY !== year || sM !== month || sD !== el)
+        )
+          return css`
+            color: #5b5555;
+          `;
+        return css`
+          background-color: rgba(255, 132, 80, 1);
+        `;
+      }
+      if (sY !== year || sM !== month || sD !== el)
+        return css`
+          color: #5b5555;
+        `;
       return css`
         background-color: rgba(255, 132, 80, 1);
       `;
-    } else {
-      if (isIncluded) {
-        return css`
-          background-color: rgba(255, 207, 181, 1);
-        `;
-      }
+    }
+  }}
+  ${({ startDay, days, endDay }) => {
+    const { year, month, el } = days;
+    if (el && endDay) {
+      const { year: sY, month: sM, el: sD } = startDay;
+      const { year: eY, month: eM, el: eD } = endDay;
+      if (
+        new Date(year, month - 1, el).getTime() <=
+          new Date(sY, sM - 1, sD).getTime() ||
+        new Date(year, month - 1, el).getTime() >=
+          new Date(eY, eM - 1, eD).getTime()
+      )
+        return;
+
+      return css`
+        background-color: rgba(255, 207, 181, 1);
+        border-radius: 0;
+      `;
     }
   }}
   &:hover {
@@ -127,28 +112,31 @@ const HalfBack = styled.div`
   height: 48px;
   z-index: 7;
   pointer-events: none;
-  ${({ startDay, endDay, isIncluded }) => {
-    if (startDay && isIncluded) {
-      if (endDay) {
-        return css`
-          background-color: rgba(255, 207, 181, 1);
-          right: 0;
-          opacity: 0;
-        `;
-      } else {
-        return css`
-          background-color: rgba(255, 207, 181, 1);
-          right: 0;
-          opacity: 1;
-        `;
-      }
-    }
-    if (endDay && isIncluded) {
+  ${({ startDay, endDay, days }) => {
+    if (!endDay || startDay.el === endDay.el) return;
+    const { year, month, el } = days;
+    const { year: sY, month: sM, el: sD } = startDay;
+    if (
+      new Date(year, month - 1, el).getTime() ===
+      new Date(sY, sM - 1, sD).getTime()
+    )
+      return css`
+        background-color: rgba(255, 207, 181, 1);
+        right: 0;
+      `;
+  }}
+  ${({ startDay, endDay, days }) => {
+    if (!endDay || startDay.el === endDay.el) return;
+    const { year, month, el } = days;
+    const { year: eY, month: eM, el: eD } = endDay;
+
+    if (
+      new Date(year, month - 1, el).getTime() ===
+      new Date(eY, eM - 1, eD).getTime()
+    )
       return css`
         background-color: rgba(255, 207, 181, 1);
         left: 0;
-        opacity: 1;
       `;
-    }
   }}
 `;

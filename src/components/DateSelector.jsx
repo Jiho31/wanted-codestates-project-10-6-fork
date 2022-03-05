@@ -1,46 +1,75 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+
+import React, { useState, useMemo } from 'react';
 import styled, { css } from 'styled-components';
 import Calendar from './Calendar';
+import { useDispatch } from 'react-redux';
+import { setEndDate, setStartDate } from 'modules/careDate';
 export default function DateSelector({ showCalendarHandler }) {
   const [targetYear, setTargetYear] = useState(new Date().getFullYear());
   const [targetMonth, setTargetMonth] = useState(new Date().getMonth() + 1);
-  // const today = new Date(targetYear, targetMonth + 1);
-  // const [month, setMonth] = useState(today.getMonth());
+  const [startDay, setStartDay] = useState(null);
+  const [endDay, setEndDay] = useState(null);
+  const dispatch = useDispatch();
 
-  const startDateSet = useSelector((state) => state.careDate.startDate.set);
-  const endDateSet = useSelector((state) => state.careDate.endDate.set);
-  const isOnButton = startDateSet && endDateSet;
-  console.log('on', isOnButton);
-
-  const buttonHandler = () => {
-    if (isOnButton) {
+  const selectedHandler = () => {
+    if (endDay) {
+      const { year: sY, month: sM, el: sD } = startDay;
+      const { year: eY, month: eM, el: eD } = endDay;
+      dispatch(setStartDate(sY, sM, sD));
+      dispatch(setEndDate(eY, eM, eD));
       showCalendarHandler();
     }
   };
+
+  const init = () => {
+    setStartDay(null);
+    setEndDay(null);
+  };
+  const setClickday = useMemo(() => {
+    return (function* () {
+      while (true) {
+        const selectedStDate = yield;
+        setStartDay((prev) => ({ ...prev, ...selectedStDate }));
+        const selectedEdDate = yield 1;
+        setEndDay((prev) => ({ ...prev, ...selectedEdDate }));
+        yield 2;
+        init();
+      }
+    })();
+  }, []);
   return (
     <ContainerSt>
-      <div>
-        <TopSt>돌봄 날짜 선택</TopSt>
-        <CalendarWrapper>
-          <Calendar
-            month={targetMonth}
-            setMonth={setTargetMonth}
-            year={targetYear}
-            setTargetYear={setTargetYear}
-          />
-        </CalendarWrapper>
-        {/* <CalendarWrapper>
+      <TopSt>돌봄 날짜 선택</TopSt>
+      <CalendarWrapper>
+        <Calendar
+          month={targetMonth}
+          setMonth={setTargetMonth}
+          year={targetYear}
+          setTargetYear={setTargetYear}
+          startDay={startDay}
+          setStartDay={setStartDay}
+          endDay={endDay}
+          setEndDay={setEndDay}
+          setClickday={setClickday}
+          pos="top"
+        />
+      </CalendarWrapper>
+      <CalendarWrapper>
         <Calendar
           month={targetMonth + 1}
           setMonth={setTargetMonth}
           year={targetYear}
           setTargetYear={setTargetYear}
+          startDay={startDay}
+          setStartDay={setStartDay}
+          endDay={endDay}
+          setEndDay={setEndDay}
+          setClickday={setClickday}
+          pos="bottom"
         />
-      </CalendarWrapper> */}
-      </div>
+      </CalendarWrapper>
+      <ButtonSt endDay={endDay} onClick={selectedHandler}>
 
-      <ButtonSt onClick={buttonHandler} isOnButton={isOnButton}>
         선택 완료
       </ButtonSt>
     </ContainerSt>
@@ -57,7 +86,6 @@ const ContainerSt = styled.div`
   flex-direction: column;
   justify-content: space-between;
   border-radius: 10px;
-
   z-index: 9;
 `;
 const TopSt = styled.div`
@@ -68,6 +96,7 @@ const TopSt = styled.div`
   height: 48px;
   padding: 0 17.8px;
   position: relative;
+  font-weight: 700;
 `;
 const CalendarWrapper = styled.div`
   border-top: 1px solid #f6f6f6;
@@ -82,13 +111,11 @@ const ButtonSt = styled.div`
   /* bottom: 0px; */
   height: 48px;
   font-weight: 700;
-  ${(props) => {
-    if (props.isOnButton) {
-      return css`
-        background-color: #ff8450;
-        color: #fff;
-        cursor: pointer;
-      `;
-    }
+  ${({ endDay }) => {
+    if (!endDay) return;
+    return css`
+      background-color: #ff8450;
+      color: #fff;
+    `;
   }}
 `;
