@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { ReactComponent as LeftArrow } from 'assets/leftArrow.svg';
 import { ReactComponent as RightArrow } from 'assets/rightArrow.svg';
@@ -6,13 +6,22 @@ import { ReactComponent as Fill } from 'assets/Fill.svg';
 import Dates from 'components/Dates';
 
 export default function Calendar(props) {
-  const { month, setMonth, year, setTargetYear } = props;
-  const [startDay, setStartDay] = useState(null);
-  const [endDay, setEndDay] = useState(null);
+  const {
+    month,
+    setMonth,
+    year,
+    setTargetYear,
+    startDay,
+    setStartDay,
+    endDay,
+    setEndDay,
+    setClickday,
+    pos,
+  } = props;
+
   const days = ['일', '월', '화', '수', '목', '금', '토'];
   const preLastInfo = new Date(year, month - 1, 0);
   const thisLastInfo = new Date(year, month, 0);
-
   const preLastDate = preLastInfo.getDate();
   const preLastDay = preLastInfo.getDay();
   const thisLastDate = thisLastInfo.getDate();
@@ -30,41 +39,12 @@ export default function Calendar(props) {
     nextDates.push('');
   }
   const thisDates = [...Array(thisLastDate + 1).keys()].slice(1);
-
   const thisMonth = [...preDates, ...thisDates, ...nextDates];
-
   const monthHandler = (n) => {
-    const newDate = new Date(year, month + n, 0);
+    const newDate = new Date(year, month + (pos === 'bottom' ? n - 1 : n), 0);
+    console.log(newDate);
     setMonth(newDate.getMonth() + 1);
     setTargetYear(newDate.getFullYear());
-  };
-
-  const init = () => {
-    setStartDay(null);
-    setEndDay(null);
-  };
-  const setClickday = useMemo(() => {
-    return (function* () {
-      while (true) {
-        const startDay = yield;
-        setStartDay(startDay);
-        const endDay = yield 1;
-        setEndDay(endDay);
-        yield 2;
-        init();
-      }
-    })();
-  }, []);
-  const newThisMonth = [...thisMonth.filter((v) => v)];
-  const vaildate = (startDay, endDay, el) => {
-    if (startDay <= endDay) {
-      return el >= newThisMonth[startDay - 1] && el <= newThisMonth[endDay - 1]
-        ? true
-        : false;
-    } else {
-      setStartDay(endDay);
-      setEndDay(startDay);
-    }
   };
   return (
     <ContainerSt>
@@ -86,12 +66,11 @@ export default function Calendar(props) {
             <Dates
               key={idx}
               setClickday={setClickday}
-              startDay={el === newThisMonth[startDay - 1] ? true : false}
-              endDay={el === newThisMonth[endDay - 1] ? true : false}
-              isIncluded={endDay ? vaildate(+startDay, +endDay, el) : false}
-              year={year}
-              month={month}
-              date={el}
+              days={{ year, month, el }}
+              startDay={startDay}
+              setStartDay={setStartDay}
+              endDay={endDay}
+              setEndDay={setEndDay}
             >
               {el}
             </Dates>
@@ -122,6 +101,7 @@ const Title = styled.div`
   .arrow {
     width: 13.6px;
     height: 12.7px;
+    cursor: pointer;
   }
 `;
 const DatesWrapper = styled.div`

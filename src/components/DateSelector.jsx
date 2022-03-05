@@ -1,11 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import Calendar from './Calendar';
 export default function DateSelector({ showCalendarHandler }) {
   const [targetYear, setTargetYear] = useState(new Date().getFullYear());
   const [targetMonth, setTargetMonth] = useState(new Date().getMonth() + 1);
-  // const today = new Date(targetYear, targetMonth + 1);
-  // const [month, setMonth] = useState(today.getMonth());
+  const [startDay, setStartDay] = useState(null);
+  const [endDay, setEndDay] = useState(null);
+
+  const init = () => {
+    setStartDay(null);
+    setEndDay(null);
+  };
+  const setClickday = useMemo(() => {
+    return (function* () {
+      while (true) {
+        const selectedStDate = yield;
+        setStartDay((prev) => ({ ...prev, ...selectedStDate }));
+        const selectedEdDate = yield 1;
+        setEndDay((prev) => ({ ...prev, ...selectedEdDate }));
+        yield 2;
+        init();
+      }
+    })();
+  }, []);
   return (
     <ContainerSt>
       <TopSt onClick={showCalendarHandler}>돌봄 날짜 선택</TopSt>
@@ -15,15 +32,27 @@ export default function DateSelector({ showCalendarHandler }) {
           setMonth={setTargetMonth}
           year={targetYear}
           setTargetYear={setTargetYear}
+          startDay={startDay}
+          setStartDay={setStartDay}
+          endDay={endDay}
+          setEndDay={setEndDay}
+          setClickday={setClickday}
+          pos="top"
         />
       </CalendarWrapper>
       <CalendarWrapper>
-        {/* <Calendar
+        <Calendar
           month={targetMonth + 1}
           setMonth={setTargetMonth}
           year={targetYear}
           setTargetYear={setTargetYear}
-        /> */}
+          startDay={startDay}
+          setStartDay={setStartDay}
+          endDay={endDay}
+          setEndDay={setEndDay}
+          setClickday={setClickday}
+          pos="bottom"
+        />
       </CalendarWrapper>
       <ButtonSt onClick={showCalendarHandler}>선택 완료</ButtonSt>
     </ContainerSt>
@@ -37,6 +66,7 @@ const ContainerSt = styled.div`
   /* background-color: lightgray; */
   width: 360px;
   height: 1000px;
+  z-index: 100;
 `;
 const TopSt = styled.div`
   text-align: center;
