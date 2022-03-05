@@ -9,11 +9,12 @@ export const setStartDate = (year, month, date) => ({
   month,
   date,
 });
-export const setEndDate = (year, month, date) => ({
+export const setEndDate = (year, month, date, set) => ({
   type: SET_END_DATE,
   year,
   month,
   date,
+  set,
 });
 export const setShowCalendar = () => ({ type: SET_SHOW_CALENDAR });
 export const dateInit = () => ({ type: DATE_INIT });
@@ -43,7 +44,7 @@ export default function careDate(state = initialState, action) {
           year: action.year,
           month: action.month,
           date: action.date,
-          set: true,
+          set: action.set === undefined ? true : false,
         },
       };
     case DATE_INIT:
