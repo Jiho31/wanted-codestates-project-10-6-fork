@@ -20,16 +20,17 @@ export default function DateSelector({ showCalendarHandler }) {
   };
   return (
     <ContainerSt>
-      <TopSt>돌봄 날짜 선택</TopSt>
-      <CalendarWrapper>
-        <Calendar
-          month={targetMonth}
-          setMonth={setTargetMonth}
-          year={targetYear}
-          setTargetYear={setTargetYear}
-        />
-      </CalendarWrapper>
-      {/* <CalendarWrapper>
+      <div>
+        <TopSt>돌봄 날짜 선택</TopSt>
+        <CalendarWrapper>
+          <Calendar
+            month={targetMonth}
+            setMonth={setTargetMonth}
+            year={targetYear}
+            setTargetYear={setTargetYear}
+          />
+        </CalendarWrapper>
+        {/* <CalendarWrapper>
         <Calendar
           month={targetMonth + 1}
           setMonth={setTargetMonth}
@@ -37,6 +38,8 @@ export default function DateSelector({ showCalendarHandler }) {
           setTargetYear={setTargetYear}
         />
       </CalendarWrapper> */}
+      </div>
+
       <ButtonSt onClick={buttonHandler} isOnButton={isOnButton}>
         선택 완료
       </ButtonSt>
@@ -50,6 +53,11 @@ const ContainerSt = styled.div`
   background-color: white;
   width: 360px;
   min-height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+
   z-index: 9;
 `;
 const TopSt = styled.div`
@@ -70,8 +78,8 @@ const ButtonSt = styled.div`
   width: 360px;
   text-align: center;
   line-height: 48px;
-  position: absolute;
-  bottom: 0px;
+  /* position: absolute; */
+  /* bottom: 0px; */
   height: 48px;
   font-weight: 700;
   ${(props) => {

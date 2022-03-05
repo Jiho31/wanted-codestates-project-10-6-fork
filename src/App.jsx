@@ -37,6 +37,5 @@ const Wrapper = styled.div`
   transform: translate(-50%, -50%);
   background-color: #fff;
   border-radius: 10px;
-  overflow: hidden;
   box-shadow: 0px 0px 10px rgba(120, 120, 120, 0.1);
 `;

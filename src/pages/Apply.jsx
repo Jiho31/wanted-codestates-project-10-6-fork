@@ -32,4 +32,5 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   padding: 56px 0 64px 0;
+  border-radius: 10px;
 `;

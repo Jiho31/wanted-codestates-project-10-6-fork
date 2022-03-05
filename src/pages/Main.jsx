@@ -22,6 +22,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
 `;
 const H5 = styled.h5`
   font-family: Spoqa Han Sans Neo;
