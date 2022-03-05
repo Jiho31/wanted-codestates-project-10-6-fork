@@ -29,6 +29,8 @@ export default function Calendar(props) {
 
   const preDates = [];
   const nextDates = [];
+  const newYear = new Date(year, month, 0).getFullYear();
+  const newMonth = new Date(year, month, 0).getMonth() + 1;
 
   if (preLastDay < 6) {
     for (let i = preLastDate; i > preLastDate - preLastDay - 1; i--) {
@@ -42,7 +44,6 @@ export default function Calendar(props) {
   const thisMonth = [...preDates, ...thisDates, ...nextDates];
   const monthHandler = (n) => {
     const newDate = new Date(year, month + (pos === 'bottom' ? n - 1 : n), 0);
-    console.log(newDate);
     setMonth(newDate.getMonth() + 1);
     setTargetYear(newDate.getFullYear());
   };
@@ -52,7 +53,7 @@ export default function Calendar(props) {
         <div className="arrow">
           <LeftArrow onClick={() => monthHandler(-1)} />
         </div>
-        <div className="thisMonth">{`${year}년 ${month}월`}</div>
+        <div className="thisMonth">{`${newYear}년 ${newMonth}월`}</div>
         <div className="arrow">
           <RightArrow onClick={() => monthHandler(1)} />
         </div>

@@ -1,6 +1,4 @@
-import { setEndDate, setStartDate } from 'modules/careDate';
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 
 export default function Dates({
@@ -12,19 +10,12 @@ export default function Dates({
   endDay,
   startDay,
 }) {
-  const dispatch = useDispatch();
   const execGene = (clickDay) => {
     let { value } = setClickday.next(clickDay);
     if (!value) setClickday.next(clickDay);
   };
   const setDate = () => {
     children && execGene(days);
-    // if (startDay) {
-    // dispatch(setStartDate(year, month, date));
-    // }
-    // if (endDay) {
-    //   dispatch(setEndDate(year, month, date));
-    // }
   };
 
   useEffect(() => {
