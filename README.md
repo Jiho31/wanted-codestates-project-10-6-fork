@@ -65,13 +65,15 @@
 <details>
   <summary>김주영</summary>
   <ul>
-   <li> </li>
+    <li>랜딩 페이지 구성</li>
+    <li>돌봄 유형 컴포넌트 UI 제작</li>
+    <li>달력 기능 구현</li>
   </ul>
 </details>
 <details>
   <summary>복지호</summary>
   <ul>
-    <li> </li>
+   <li></li>
   </ul>
 </details>
 <details>
